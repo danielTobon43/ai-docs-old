@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inteligencia Artificial - documentación central : Roadmap pipeline entrenamiento</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Inteligencia Artificial - documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1432617107.html">Inteligencia Artificial - Documentación central</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Inteligencia Artificial - documentación central : Roadmap pipeline entrenamiento
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Camilo H</span>, last modified on Sep 07, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>Descripción general de metas para ejecutar la transición a los servicios vertex, sagemaker. Únicamente para la etapa de entrenamiento.</p><p><strong>Meta: </strong>Efectuar el proceso de entrenamiento en las plataformas vertex, training, tratando de utilizar en la medida de lo posible el código existente de efficient-det</p><h1 id="Roadmappipelineentrenamiento-Preámbulo">Preámbulo</h1><p>Existen múltiples maneras de ejecutar los entrenamientos en ambas plataformas (paquete python, container preconfigurado, container personalizado), todas las formas requieren algún tipo de configuración específica dependiendo de la plataforma.</p><div class="table-wrap"><table data-layout="default" class="confluenceTable"><colgroup><col style="width: 226.67px;"/><col style="width: 226.67px;"/><col style="width: 226.67px;"/></colgroup><tbody><tr><th class="confluenceTh"><p><strong>Método</strong></p></th><th class="confluenceTh"><p><strong>Ventajas</strong></p></th><th class="confluenceTh"><p><strong>Desventajas</strong></p></th></tr><tr><td class="confluenceTd"><p>Paquete de python</p></td><td class="confluenceTd"><ul><li><p>Utilizar un paquete de python, facilita la integración en otros sistemas existentes</p></li><li><p>Permite definir una estructura para la utilización de futuras arquitecturas</p></li></ul></td><td class="confluenceTd"><ul><li><p>Requiere esfuerzo de desarrollo del paquete</p></li></ul></td></tr><tr><td class="confluenceTd"><p>Container preconstruido</p></td><td class="confluenceTd"><ul><li><p>No requiere configuración de docker al ser gestionada por el sistema</p></li></ul></td><td class="confluenceTd"><ul><li><p>Requiere adaptaciones específicas por plataforma</p></li><li><p>Requiere de paquete de python</p></li></ul></td></tr><tr><td class="confluenceTd"><p>Container personalizado</p></td><td class="confluenceTd"><ul><li><p>Personalización completa de la ejecución de entrenamiento</p></li></ul></td><td class="confluenceTd"><ul><li><p>Requiere adaptaciones específicas por plataforma</p></li></ul></td></tr></tbody></table></div><p>Todas las alternativas ofrecen ventajas y desventajas que se pueden aprovechar en los distintos entornos de desarrollo manejados por el grupo (local, pruebas, producción), por lo que es posible mantener las 3 formas de ejecución conectadas entre sí: Usar un container personalizado (o preconstruido) que dentro maneje un paquete de python que utilice la arquitectura deseada para el entrenamiento</p><p /><p><strong>Objetivos:</strong></p><ul><li><p>Ejecutar entrenamiento completo en la plataforma Vertex Training</p></li><li><p>Ejecutar entrenamiento completo en la plataforma Sagemaker</p></li></ul><p /><p><strong>Requerimientos:</strong></p><ul><li><p>Creación de paquete de python utilizando cómo base la arquitectura efficiendet</p></li><li><p>Adaptación del docker existente para cumplir los requerimientos de cada plataforma</p></li></ul><h1 id="Roadmappipelineentrenamiento-Creacióndepaquetebaseparaefficient-det">Creación de paquete base para efficient-det</h1><p>Ver documento específico en</p><p><a href="1447198723.html" data-linked-resource-id="1447198723" data-linked-resource-version="2" data-linked-resource-type="page">Creación de paquete base para efficient-det</a> </p><h1 id="Roadmappipelineentrenamiento-GCPVertextraining">GCP Vertex training</h1><p>Ver documento específico en</p><p><a href="1443233794.html" data-linked-resource-id="1443233794" data-linked-resource-version="3" data-linked-resource-type="page">Vertex AI (Vertex training)</a> </p><h1 id="Roadmappipelineentrenamiento-AWSSagemaker">AWS Sagemaker</h1><p>En progreso…<br/>docker/pip install</p><p>pip install<br/>Cargue el dataset docker<br/>Entrene<br/>Entregue el pb</p><h1 id="Roadmappipelineentrenamiento-APIgeneralizada">API generalizada</h1><p>En progreso…</p><ul><li><p>Cargar los datos (s3, buckets)</p></li><li><p>Entrenamiento (vertexr, sagemaker)</p></li></ul>
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 06, 2021 20:42</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

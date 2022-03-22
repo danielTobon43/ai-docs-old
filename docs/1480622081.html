@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inteligencia Artificial - documentación central : 1. Instalación</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Inteligencia Artificial - documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1432617107.html">Inteligencia Artificial - Documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1462665217.html">Procesos de configuración</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Cloud-SDK_1467973633.html">Cloud SDK</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Inteligencia Artificial - documentación central : 1. Instalación
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Daniel Tobon</span>, last modified on Oct 06, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <ol><li><p><strong>INSTALACION: </strong></p></li></ol><p>En este apartado se detalla el proceso de instalación para el sistema operativo Linux (es similar en Windows y macOS). </p><p><em>Requisitos:</em></p><ul><li><p>Python 3.5 a 3.8</p></li><li><p>Paquete de instalación: <a href="https://cloud.google.com/sdk/docs/install" class="external-link" rel="nofollow">gcloud-pkg</a> </p></li></ul><p>También, se puede descargar el paquete de instalación de uno de los siguientes links.</p><div class="table-wrap"><table data-layout="default" data-local-id="c3e64e83-8ae9-4828-b005-06b805013067" class="confluenceTable"><colgroup><col style="width: 170.0px;"/><col style="width: 170.0px;"/><col style="width: 170.0px;"/><col style="width: 170.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><p>Linux 64-bit</p><p>(x86_64)</p></td><td class="confluenceTd"><p><a href="https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-358.0.0-linux-x86_64.tar.gz" class="external-link" rel="nofollow">google-cloud-sdk-358.0.0-linux-x86_64.tar.gz</a></p></td><td class="confluenceTd"><p>92.2 MB</p></td><td class="confluenceTd"><p>a617718d7284e8198e866a93b85e62f16d5662be6ac3a887f9c72f7f33cb823b</p></td></tr><tr><td class="confluenceTd"><p>Linux 64-bit</p><p>(arm)</p></td><td class="confluenceTd"><p><a href="https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-358.0.0-linux-arm.tar.gz" class="external-link" rel="nofollow">google-cloud-sdk-358.0.0-linux-arm.tar.gz</a></p></td><td class="confluenceTd"><p>89.5 MB</p></td><td class="confluenceTd"><p>b4fed2ff2ba59c76be37478a494f472fc4a80658246a12c17c0b122c89589567</p></td></tr><tr><td class="confluenceTd"><p>Linux 32-bit</p><p>(x86)</p></td><td class="confluenceTd"><p><a href="https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-358.0.0-linux-x86.tar.gz" class="external-link" rel="nofollow">google-cloud-sdk-358.0.0-linux-x86.tar.gz</a></p></td><td class="confluenceTd"><p>89.5 MB</p></td><td class="confluenceTd"><p>ca11c065bce2a689ac24649c032567697e270c38b72afe416e8eded2b1c97df5</p></td></tr></tbody></table></div><p>1.1. Extraer el paquete de instalación. Para este ejemplo, el paquete de instalación se descargó en <code>/home/user/Downloads/google-cloud-sdk-358.0.0-linux-x86_64.tar.gz</code></p><p>1.2. Instalar el paquete:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">cd /home/user/Downloads/google-cloud-sdk-358.0.0-linux-x86_64</pre>
+</div></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">./google-cloud-sdk/install.sh</pre>
+</div></div><p>1.3. Iniciar gcloud init. Ver más <a href="https://cloud.google.com/sdk/gcloud/reference/init" class="external-link" rel="nofollow">gcloud init</a></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">./google-cloud-sdk/bin/gcloud init</pre>
+</div></div><p>1.4. Configurar zone/region, usuario de GCP, proyecto, etc. Ver más <a href="https://cloud.google.com/sdk/docs/initializing" class="external-link" rel="nofollow">default settings</a></p><p /><p>2.<strong> CONFIGURACIÓN SSH KEY</strong></p><p>El siguiente paso es configurar la llave de acceso en el metadata del proyecto. Esto se hace mediante llaves ssh que permiten la conexión a las máquinas de manera remota. Para mayor información sobre SSH keys ver la sección <a href="https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys#createsshkeys" class="external-link" rel="nofollow">Creating a new SSH key</a></p><p>2.1. Crear SSH key</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">ssh-keygen -t rsa -f ~/.ssh/[KEY_FILENAME] -C [USERNAME]</pre>
+</div></div><p>Reemplazar lo siguiente:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">[KEY_FILENAME]: El nombre que desea usar para sus archivos de clave SSH
+[NOMBRE DE USUARIO]: El nombre del usuario que se conecta a la VM.</pre>
+</div></div><p>Para gcloud se debe utilizar:  <strong>google_compute_engine </strong>en <code>[KEY_FILENAME]</code>.</p><p>Para el nombre de usuario puede ser, cloudysanfrancisco@gmail.com o cloudysanfrancisco o cualquier nombre que identifique al desarrollador en la máquina. Tener en cuenta que este nombre de usuario debe utilizarse siempre que se desee interactuar con la máquina a través de gcloud. De lo contrario, se generaría un nuevo usuario en el metadata del proyecto con el nombre del host. </p><p>Ejemplo:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">ssh-keygen -t rsa -f ~/.ssh/google_compute_engine -C elmorocho</pre>
+</div></div><p>2.2. Restrinja el acceso a su clave privada para que solo usted pueda leerla y nadie pueda escribir en ella.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">chmod 400 ~/.ssh/[KEY_FILENAME]</pre>
+</div></div><p /><p>3. <strong>LOCALIZACIÓN DE LA NUEVA SSH KEY</strong></p><p>Hay varias razones por las que es posible que deba ubicar una clave SSH. Por ejemplo, para agregar la clave SSH pública de un usuario a un proyecto o instancia, necesita acceder al archivo de clave pública para su clave.</p><p>Cuando se crea una clave SSH, se guarda en una ubicación predeterminada. Las ubicaciones y los nombres predeterminados de sus archivos de claves SSH públicas y privadas dependen de las herramientas que se utilizaron para crear esa clave. Ver más información en <a href="https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys#locatesshkeys" class="external-link" rel="nofollow">Locating an SSH key</a>.</p><p>Si creó una clave en una estación de trabajo Linux o macOS mediante la herramienta <strong>ssh-keygen</strong>, su clave se guardó en las siguientes ubicaciones:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">Archivo de clave pública: ~/.ssh/[KEY_FILENAME].pub
+Archivo de clave privada: ~/.ssh/[KEY_FILENAME]</pre>
+</div></div><p>donde <code>[KEY_FILENAME]</code> es el nombre de archivo de la clave SSH, que se estableció cuando se creó la clave.</p><p /><p>4. <strong>AGREGAR NUEVA SSH KEY AL PROYECTO DE GCP</strong></p><p>El acceso de los usuarios a una instancia de Linux a través de herramientas de terceros está determinado por las claves SSH públicas disponibles para la instancia. Puede controlar las claves SSH públicas que están disponibles para una instancia de Linux editando los metadatos, que es donde se almacenan sus claves SSH públicas y la información relacionada. </p><p>Se debe dirigir al menú principal en GCP (1), luego seleccionar Compute Engine (2), Metadata (3).</p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1480622081/1481506823.png" data-image-src="attachments/1480622081/1481506823.png" data-height="1055" data-width="1846" data-unresolved-comment-count="0" data-linked-resource-id="1481506823" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="metadata1.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1480622081" data-linked-resource-container-version="5" data-media-id="c70d6ec3-9a9a-4e30-add0-80da3b229de4" data-media-type="file"></span><p>Luego seleccione la pestaña SSH keys.</p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1480622081/1481703425.png" data-image-src="attachments/1480622081/1481703425.png" data-height="1055" data-width="1846" data-unresolved-comment-count="0" data-linked-resource-id="1481703425" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="metadata2.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1480622081" data-linked-resource-container-version="5" data-media-id="e6397269-cb51-4d28-a512-61c0eb6c73b8" data-media-type="file"></span><p>4.1. Agregar o quitar claves SSH públicas del proyecto en GCP</p><p>Para agregar o eliminar claves SSH públicas de todo el proyecto de la <a href="https://console.cloud.google.com/" class="external-link" rel="nofollow">Cloud Console</a> :</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-external-resource image-center" alt="PuTTYgen public key." width="680" src="https://cloud.google.com/compute/images/console-remove-project-ssh-key.png" data-image-src="https://cloud.google.com/compute/images/console-remove-project-ssh-key.png" loading="lazy"></span><ol><li><p>Ir a <strong>Metadata</strong> opción en su proyecto.</p><p><a href="https://console.cloud.google.com/compute/metadata/sshKeys" class="external-link" rel="nofollow">Go to Metadata</a></p></li><li><p>Sobre <strong>SSH Keys</strong>, click <strong>Edit</strong>.</p></li><li><p>Modifique el project-wide public SSH keys:</p><ul><li><p>Para añadir una clave pública SSH key, click <strong>Add item</strong>.</p></li><li><p>Copie y pegue el contenido de su clave pública google_cloud_compute.pub localizada en <code>~/.ssh/google_compute_engine.pub</code> en la caja de texto.</p></li></ul></li><li><p>Cuando finalice la edición de la nueva clave SSH, click <strong>Save</strong>.</p></li></ol>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1480622081/1481506823.png">metadata1.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1480622081/1481703425.png">metadata2.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 06, 2021 20:42</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

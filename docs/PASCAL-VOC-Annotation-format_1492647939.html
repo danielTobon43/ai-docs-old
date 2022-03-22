@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inteligencia Artificial - documentación central : PASCAL VOC Annotation format</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Inteligencia Artificial - documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1432617107.html">Inteligencia Artificial - Documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Labeling_1492942849.html">Labeling</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Inteligencia Artificial - documentación central : PASCAL VOC Annotation format
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Daniel Tobon</span>, last modified on Nov 19, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>Pascal VOC es un archivo <strong>XML</strong>, a diferencia de COCO, que tiene un archivo <strong>JSON</strong>. En Pascal VOC creamos un archivo por cada una de las imágenes en el conjunto de datos. En COCO tenemos un solo archivo para el conjunto de datos completo de entrenamiento, prueba y validación. El cuadro delimitador en los formatos de datos Pascal VOC y COCO es diferente.</p><p>La estructura del formato PASCAL VOC es la siguiente:</p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1492647939/1509294087.png" data-image-src="attachments/1492647939/1509294087.png" data-height="258" data-width="1024" data-unresolved-comment-count="0" data-linked-resource-id="1509294087" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20211119-111708.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1492647939" data-linked-resource-container-version="4" data-media-id="e1aded06-b903-453b-8151-07d837c2f503" data-media-type="file"></span><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>En AIturing no se utiliza esta estructura para la organización del dataset. En su lugar, se tienen dos carpetas: </p><ul><li><p>IMAGENES: Imagenes en formato <em>.jpg</em></p></li><li><p>LABELS: Marcaciones en formato <em>.xml (PASCAL VOC)</em></p></li></ul><p /></div></div><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1492647939/1509359623.png" data-image-src="attachments/1492647939/1509359623.png" data-height="347" data-width="1481" data-unresolved-comment-count="0" data-linked-resource-id="1509359623" data-linked-resource-version="2" data-linked-resource-type="attachment" data-linked-resource-default-alias="image248767.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1492647939" data-linked-resource-container-version="4" data-media-id="0a31c21f-bb1f-4edd-a52a-72dbc9c87e87" data-media-type="file"></span><p /><p>Los cuatro componentes son <em>Anotaciones</em>, <em>ImageSets</em>, <em>JPEGImages</em> y <em>pascal_label_map.pbxt</em>.</p><p><em><strong>JPEGImages</strong></em> es la carpeta que contiene las imágenes originales. </p><p><em><strong>ImageSets</strong></em> proporciona un lista de archivos <em>.txt</em> dentro de la carpeta principal que contiene la lista de imágenes para entrenamiento y validación.</p><p><em><strong>pascal_label_map.pbxt</strong></em> contiene la identificación y el nombre del objeto que se detectará.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">item {
+ id: 1
+ name: ‘cricketers’
+}</pre>
+</div></div><p>La última y más importante sección es <strong>Annotations</strong>, los archivos de anotaciones se crean para cada imagen en la carpeta dada.</p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1492647939/1509425158.png" data-image-src="attachments/1492647939/1509425158.png" data-height="296" data-width="1024" data-unresolved-comment-count="0" data-linked-resource-id="1509425158" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20211119-111806.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1492647939" data-linked-resource-container-version="4" data-media-id="ee1170a4-ff4c-4b04-a869-635edce3977c" data-media-type="file"></span><p>Las anotaciones se almacenan en un archivo <em>XML</em>.</p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1492647939/1509490695.png" data-image-src="attachments/1492647939/1509490695.png" data-height="765" data-width="1024" data-unresolved-comment-count="0" data-linked-resource-id="1509490695" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20211119-111857.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1492647939" data-linked-resource-container-version="4" data-media-id="88a668a0-69bf-4624-a1b5-7c60fb3387cb" data-media-type="file"></span><p>Hay diferentes componentes o etiquetas correspondientes en el archivo <em>XML</em>.</p><ul><li><p><strong>folder</strong>: que contiene imágenes.</p></li><li><p><strong>filename</strong>: la ruta relativa de la imagen que está anotada.</p></li><li><p><strong>path</strong>: una ruta absoluta del archivo de salida después de las anotaciones.</p></li><li><p><strong>size</strong>: alto, ancho en píxeles, la profundidad que indica el número de canales para la profundidad de imagen RGB es 3, para B/N es 1.</p></li><li><p><strong>object</strong>: contiene <strong>name</strong>, <strong>pose</strong>, <strong>truncated</strong>, <strong>difficult</strong>.</p></li><li><p><strong>nombre</strong>: contiene el nombre del objeto que se está anotando, en nuestro caso puede ser el nombre de un producto o afiche</p></li><li><p><strong>pose</strong>: orientación izquierda, derecha, etc. </p></li><li><p><strong>truncated</strong>: si los objetos se extienden más allá del cuadro delimitador, truncated es 1 en caso contrario 0. </p></li><li><p><strong>dificult</strong>: si se evalúa como difícil es 1 sino 0.</p></li><li><p><strong>bndbox</strong>: cuadro delimitador que consta de la esquina superior izquierda y la esquina inferior derecha <em>(xmin-top left, ymin-top left, xmax-bottom right, ymax-bottom right)</em></p></li></ul><p /><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>El formato <em>.XML </em>anotaciones de AIturing es distinto al formato estandar PASCAL VOC en algunos puntos.</p></div></div><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1492647939/1509523463.png" data-image-src="attachments/1492647939/1509523463.png" data-height="939" data-width="1548" data-unresolved-comment-count="0" data-linked-resource-id="1509523463" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Screenshot from 2021-11-19 06-41-34.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1492647939" data-linked-resource-container-version="4" data-media-id="8d2767d5-f05a-4bbc-9195-078bcad7ab4e" data-media-type="file"></span><p>Se tienen etiquetas adicionales como <strong>country</strong>, <strong>channel</strong>, <strong>photo_id</strong>, <strong>image_url</strong>, <strong>image_name</strong>, <strong>user_reviewed</strong> y <strong>labels</strong>.</p><p>Debido a que la sección <strong>object </strong>se encuentra internamente en la etiqueta <strong>label</strong>, es necesario estandarizar este formato si se desea visualizar las marcaciones en alguna herramienta de labeling como las mencionadas en esta sección: <a href="Labeling-tools_1508605953.html" data-linked-resource-id="1508605953" data-linked-resource-version="5" data-linked-resource-type="page">Labeling tools</a> </p><h2 id="PASCALVOCAnnotationformat-Referencias">Referencias</h2><p><a href="http://host.robots.ox.ac.uk/pascal/VOC/" data-card-appearance="inline" class="external-link" rel="nofollow">http://host.robots.ox.ac.uk/pascal/VOC/</a> </p><p><a href="http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#data" data-card-appearance="inline" class="external-link" rel="nofollow">http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#data</a> </p><p><a href="https://towardsai.net/p/machine-learning/understanding-pascal-voc-and-coco-annotations-for-object-detection" data-card-appearance="inline" class="external-link" rel="nofollow">https://towardsai.net/p/machine-learning/understanding-pascal-voc-and-coco-annotations-for-object-detection</a> </p><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1492647939/1509294087.png">image-20211119-111708.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1492647939/1509490689.png">image-20211119-111709.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1492647939/1509425158.png">image-20211119-111806.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1492647939/1509490695.png">image-20211119-111857.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1492647939/1509294103.png">image248767.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1492647939/1509523463.png">Screenshot from 2021-11-19 06-41-34.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1492647939/1509359623.png">image248767.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 06, 2021 20:44</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

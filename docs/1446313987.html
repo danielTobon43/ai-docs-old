@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inteligencia Artificial - documentación central : Configuración Netdata</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Inteligencia Artificial - documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1432617107.html">Inteligencia Artificial - Documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1462665217.html">Procesos de configuración</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1447624707.html">Monitoreo de máquinas provisional</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Inteligencia Artificial - documentación central : Configuración Netdata
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Camilo H</span>, last modified by <span class='editor'> Daniel Tobon</span> on Oct 14, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>Creado: <time datetime="2021-08-26" class="date-past">26 Aug 2021</time> </p><p>Adaptado de:<br/><a href="https://learn.netdata.cloud/docs/get-started" data-card-appearance="inline" class="external-link" rel="nofollow">https://learn.netdata.cloud/docs/get-started</a> </p><h2 id="ConfiguraciónNetdata-Instalación">Instalación</h2><p><code>bash &lt;(curl -Ss https://my-netdata.io/kickstart.sh) --stable-channel --disable-telemetry</code></p><ul><li><p>Pulsar enter para instalar los paquetes requeridos</p></li><li><p>(Y) para continuar</p></li></ul><p>Aparece información de donde están los archivos de configuración</p><p>Por ejemplo:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">  You are about to build and install netdata to your system.
+
+  The build process will use /tmp for
+  any temporary files. You can override this by setting $TMPDIR to a
+  writable directory where you can execute files.
+
+  It will be installed at these locations:
+
+   - the daemon     at /usr/sbin/netdata
+   - config files   in /etc/netdata
+   - web files      in /usr/share/netdata
+   - plugins        in /usr/libexec/netdata
+   - cache files    in /var/cache/netdata
+   - db files       in /var/lib/netdata
+   - log files      in /var/log/netdata
+   - pid file       at /var/run/netdata.pid
+   - logrotate file at /etc/logrotate.d/netdata</pre>
+</div></div><ul><li><p>Pulsar enter</p></li><li><p>Esperar a que finalice el proceso</p></li></ul><h2 id="ConfiguraciónNetdata-ConfigurarelmonitoreodeGPU">Configurar el monitoreo de GPU</h2><p>Adaptado de <a href="https://learn.netdata.cloud/docs/agent/collectors/python.d.plugin/nvidia_smi/" data-card-appearance="inline" class="external-link" rel="nofollow">https://learn.netdata.cloud/docs/agent/collectors/python.d.plugin/nvidia_smi/</a> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence" data-theme="Confluence">cd /etc/netdata
+sudo ./edit-config python.d.conf
+
+# Buscar la línea nvidia_smi: yes y descomentarla
+
+#Reiniciar netdata
+sudo systemctl restart netdata</pre>
+</div></div><h2 id="ConfiguraciónNetdata-Habilitardbengineparaalmacenarestadísticashistóricas">Habilitar dbengine para almacenar estadísticas históricas</h2><p><a href="https://learn.netdata.cloud/docs/agent/database/engine/" data-card-appearance="inline" class="external-link" rel="nofollow">https://learn.netdata.cloud/docs/agent/database/engine/</a> </p><p>El espacio destinado inicialmente es de 4GB (4096) que permite recolectar más de 15 días seguidos de métricas con resolución de 2 seg (Validar más adelante, la cantidad real de espacio requerido)</p><p><strong>Usar calculadora para la cantidad de espacio a usar</strong><br/><a href="https://learn.netdata.cloud/docs/store/change-metrics-storage#calculate-the-system-resources-ram-disk-space-needed-to-store-metrics" data-card-appearance="inline" class="external-link" rel="nofollow">https://learn.netdata.cloud/docs/store/change-metrics-storage#calculate-the-system-resources-ram-disk-space-needed-to-store-metrics</a> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence" data-theme="Confluence">cd /etc/netdata
+sudo ./edit-config netdata.conf
+
+# Modificar los parámetros de acuerdo a 
+# https://learn.netdata.cloud/docs/agent/database/engine/#configuration
+update every = 2
+memory mode = dbengine
+page cache size = 32
+dbengine multihost disk space = 4096
+
+sudo systemctl restart netdata</pre>
+</div></div><h2 id="ConfiguraciónNetdata-ConfiguracióndealertasparadetectarbajousodeGPU">Configuración de alertas para detectar bajo uso de GPU</h2><h3 id="ConfiguraciónNetdata-Creararchivodealertasdesalud">Crear archivo de alertas de salud</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence" data-theme="Confluence"># Ir al directorio de instalación de netdata
+cd /etc/netdata/
+
+# Si la carpeta no existe crearla
+sudo mkdir health.d/python.d
+cd health.d/python.d
+sudo touch nvidia_smi.conf
+
+# Editar archivo
+cd /etc/netdata/
+sudo ./edit-config health.d/python.d/nvidia_smi.conf</pre>
+</div></div><h3 id="ConfiguraciónNetdata-Crearlasalarmaspersonalizadas">Crear las alarmas personalizadas</h3><p><a href="https://learn.netdata.cloud/docs/monitor/configure-alarms#write-a-new-health-entity" data-card-appearance="inline" class="external-link" rel="nofollow">https://learn.netdata.cloud/docs/monitor/configure-alarms#write-a-new-health-entity</a> </p><p>Se crean 2 alarmas, mientras se válida el funcionamiento de cada una</p><ol><li><p>Alarma por uso de GPU &quot;nvidia_smi.gpu0_gpu_utilization&quot; (nombre tomado del tablero netdata)</p></li><li><p>Alarma por número de usuarios en la GPU &quot;nvidia_smi.gpu0_user_num&quot;</p></li></ol><p><strong>Tarea futura:</strong> Validar si cómo configurar alarmas automáticamente si hay más de una GPU</p><p><strong>Referencia completa de creación de alarmas</strong><br/><a href="https://learn.netdata.cloud/docs/agent/health/reference#health-entity-reference" data-card-appearance="inline" class="external-link" rel="nofollow">https://learn.netdata.cloud/docs/agent/health/reference#health-entity-reference</a> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"> alarm: gpu0_usage
+    on: nvidia_smi.gpu0_gpu_utilization
+lookup: max -3h percentage of utilization
+ units: %
+ every: 3h
+  warn: $system.uptime.uptime &gt;= (3 * 3600) AND $this &lt;= 0
+  crit: $system.uptime.uptime &gt;= (3 * 3600) AND $this &lt;= 0 AND $status &gt;= $WARNING
+repeat: warning 15m critical 5m  
+  info: The max percentage of GPU utilization in last 3h since last start.
+
+
+ alarm: gpu0_users
+    on: nvidia_smi.gpu0_user_num
+lookup: max -3h absolute of users
+ units: users
+ every: 3h
+  warn: $system.uptime.uptime &gt;= (3 * 3600) AND $this &lt;= 0
+  crit: $system.uptime.uptime &gt;= (3 * 3600) AND $this &lt;= 0 AND $status &gt;= $WARNING
+repeat: warning 15m critical 5m  
+  info: The max amount of users using process with a gpu in the last 3h since last start.</pre>
+</div></div><ul><li><p>Guardar el archivo</p></li><li><p>Recargar configuración health <code>sudo netdatacli reload-health</code></p></li><li><p>Recargar el dashboard de netdata si se está visualizando</p></li></ul><h3 id="ConfiguraciónNetdata-Configuracióndenotificacióncongooglechat">Configuración de notificación con google chat</h3><p><strong>Documentación google</strong><br/><a href="https://developers.google.com/chat/how-tos/webhooks" data-card-appearance="inline" class="external-link" rel="nofollow">https://developers.google.com/chat/how-tos/webhooks</a> </p><ul><li><p>Crear el webhook y copiar la url arrojada<br/><code>&lt;https://chat.googleapis.com/v1/spaces/rHIrbwAAAAE/messages?key=CLAVESUPERSECRETA&amp;token=TOKENINVENTADA</code>&gt;</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence" data-theme="Confluence"># Ir al directorio de instalación de netdata
+cd /etc/netdata
+
+sudo ./edit-config health_alarm_notify.conf</pre>
+</div></div><ul><li><p>Buscar la sección de hangouts webhook y agregar la url junto con un nombre para identificarla puede ser el nombre de la sala de hangouts<br/><a href="https://learn.netdata.cloud/docs/agent/health/notifications/hangouts" data-card-appearance="inline" class="external-link" rel="nofollow">https://learn.netdata.cloud/docs/agent/health/notifications/hangouts</a> </p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">HANGOUTS_WEBHOOK_URI[prueba]=&quot;URL_WEBHOOK&quot;
+
+# Colocar el mismo nombre que se uso para identificar la url
+DEFAULT_RECIPIENT_HANGOUTS=&quot;prueba&quot;
+# Si son varios
+DEFAULT_RECIPIENT_HANGOUTS=&quot;prueba prueba2&quot;</pre>
+</div></div><h4 id="ConfiguraciónNetdata-Validarquelasalarmasseesténenviandocorrectamente">Validar que las alarmas se estén enviando correctamente</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence" data-theme="Confluence">sudo su -s /bin/bash netdata
+/usr/libexec/netdata/plugins.d/alarm-notify.sh test
+exit</pre>
+</div></div><p />
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 06, 2021 20:42</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

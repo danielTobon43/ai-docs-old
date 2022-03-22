@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inteligencia Artificial - documentación central : COCO Annotation format</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Inteligencia Artificial - documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1432617107.html">Inteligencia Artificial - Documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Labeling_1492942849.html">Labeling</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Inteligencia Artificial - documentación central : COCO Annotation format
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Daniel Tobon</span>, last modified on Nov 19, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>COCO es un dataset de detección, segmentación y subtítulos de objetos a gran escala. COCO tiene varias características:</p><ul><li><p>Segmentación de objetos</p></li><li><p>Reconocimiento en contexto </p></li><li><p>Segmentación de material de superpíxeles</p></li><li><p>330K imágenes (&gt; 200K etiquetadas) </p></li><li><p>1,5 millones de instancias de objetos </p></li><li><p>80 categorías de objetos </p></li><li><p>91 categorías de cosas </p></li><li><p>5 leyendas por imagen</p></li><li><p>250.000 personas con keypoints</p></li></ul><p>COCO almacena anotaciones en formato <strong>JSON</strong> a diferencia del formato <strong>XML</strong> en PASCAL VOC.</p><p>El documento oficial de COCO establece que tiene detección de cinco objetos, detección de puntos clave, segmentación de cosas, segmentación panóptica y subtítulos de imágenes.</p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1509392399/1509490710.png" data-image-src="attachments/1509392399/1509490710.png" data-height="802" data-width="1024" data-unresolved-comment-count="0" data-linked-resource-id="1509490710" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20211119-115831.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1509392399" data-linked-resource-container-version="2" data-media-id="16a971ba-0c67-4818-9334-77dff5e3422f" data-media-type="file"></span><p>La estructura de datos básica de las anotaciones COCO es la misma para los cinco tipos. Hay una sola anotación para todas las imágenes, diferente de las anotaciones de Pascal VOC.</p><p>Los cuatro componentes básicos son <strong>info</strong>, <strong>images</strong>, <strong>annotations</strong> y <strong>licenses</strong>.</p><ul><li><p><strong>info</strong>: contiene la información/descripción estándar de las imágenes.</p></li><li><p><strong>images</strong>: todos los detalles sobre cada imagen individual como se muestra en la figura anterior.</p></li><li><p><strong>licenses</strong>: consiste en la licencia aplicable a esa imagen.</p></li></ul><p>Para entender la etiqueta<strong> annotations</strong>, primero comprendamos qué son <strong>categories</strong>.</p><p><strong>categories</strong> contienen una lista de todas las imágenes con una identificación única y su <strong>supercategory</strong>, por ejemplo, <strong>supercategory</strong> de los jugadores será jugadores de cricket y cada jugador de críquet tendrá una identificación única.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">&quot;categories&quot;: [
+    {&quot;supercategory&quot;: &quot;cricketers&quot;,&quot;id&quot;: 1,&quot;name&quot;: &quot;Sachin&quot;},
+    {&quot;supercategory&quot;: &quot;cricketers&quot;,&quot;id&quot;: 2,&quot;name&quot;: &quot;Stokes&quot;},
+    {&quot;supercategory&quot;: &quot;umpire&quot;,&quot;id&quot;: 3,&quot;name&quot;: &quot;Bucknor&quot;},
+    {&quot;supercategory&quot;: &quot;cricketers&quot;,&quot;id&quot;: 4,&quot;name&quot;: &quot;Waugh&quot;},
+    {&quot;supercategory&quot;: &quot;umpire&quot;,&quot;id&quot;: 5,&quot;name&quot;: &quot;Taufel&quot;},
+    
+]</pre>
+</div></div><p>El número de <strong>annotations</strong> será igual al número total de objetos presentes en el dataset de imágenes.</p><p /><h2 id="COCOAnnotationformat-Referencias">Referencias</h2><p><a href="https://cocodataset.org/#home" data-card-appearance="inline" class="external-link" rel="nofollow">https://cocodataset.org/#home</a> </p><p><a href="https://towardsai.net/p/machine-learning/understanding-pascal-voc-and-coco-annotations-for-object-detection" data-card-appearance="inline" class="external-link" rel="nofollow">https://towardsai.net/p/machine-learning/understanding-pascal-voc-and-coco-annotations-for-object-detection</a> </p><p /><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1509392399/1509490710.png">image-20211119-115831.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 06, 2021 20:44</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

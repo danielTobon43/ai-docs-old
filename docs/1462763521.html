@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inteligencia Artificial - documentación central : Configuración Vertex Training</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Inteligencia Artificial - documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1432617107.html">Inteligencia Artificial - Documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1462665217.html">Procesos de configuración</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Inteligencia Artificial - documentación central : Configuración Vertex Training
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Camilo H</span>, last modified by <span class='editor'> Daniel Tobon</span> on Oct 14, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <style type='text/css'>/*<![CDATA[*/
+div.rbtoc1638841355848 {padding: 0px;}
+div.rbtoc1638841355848 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1638841355848 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1638841355848'>
+<ul class='toc-indentation'>
+<li><a href='#ConfiguraciónVertexTraining-Requerimientos'>Requerimientos</a>
+<ul class='toc-indentation'>
+<li><a href='#ConfiguraciónVertexTraining-Programas'>Programas</a></li>
+<li><a href='#ConfiguraciónVertexTraining-Permisos'>Permisos</a></li>
+</ul>
+</li>
+<li><a href='#ConfiguraciónVertexTraining-Procedimiento'>Procedimiento</a>
+<ul class='toc-indentation'>
+<li><a href='#ConfiguraciónVertexTraining-1.Creaciónderecursos'>1. Creación de recursos</a></li>
+<li><a href='#ConfiguraciónVertexTraining-2.ArtifactRegistry'>2. Artifact Registry</a></li>
+<li><a href='#ConfiguraciónVertexTraining-3.Lanzarunentrenamientopersonalizadodeprueba'>3. Lanzar un entrenamiento personalizado de prueba</a></li>
+</ul>
+</li>
+</ul>
+</div><h2 id="ConfiguraciónVertexTraining-Requerimientos">Requerimientos</h2><p>Se asume que el usuario ya tiene una imagen de docker configurada para ser ejecutada en vertex</p><h3 id="ConfiguraciónVertexTraining-Programas">Programas</h3><ul><li><p>Gcloud configurado (si se utiliza su propio PC). gcloud viene instalado y configurado por defecto en las máquinas de GCP con una service account. </p></li></ul><h3 id="ConfiguraciónVertexTraining-Permisos">Permisos</h3><ul><li><p>Creación de un bucket storage</p></li><li><p>Creación de un repositorio en artifact-registry</p></li><li><p>Creación de custom jobs en Vertex AI</p></li></ul><h2 id="ConfiguraciónVertexTraining-Procedimiento">Procedimiento</h2><ol><li><p>Se crean los recursos requeridos</p></li><li><p>Se sube la imagen que ejecuta el proceso de entrenamiento a artifact registry</p></li><li><p>Se lanza un entrenamiento de prueba para verificar el funcionamiento</p></li></ol><h3 id="ConfiguraciónVertexTraining-1.Creaciónderecursos">1. Creación de recursos</h3><ul><li><p>Elegir una región fija para evitar aumento de costos y permitir conexión con los otros servicios por ejemplo us-central1</p></li></ul><p><strong>Usando la región elegida</strong></p><ol><li><p>Crear un repositorio en Artifact Registry</p></li><li><p>Crear un bucket en GCS (Almacenamiento estándar)<br/>a. Establecer una política de retención de al menos 90 días para evitar eliminación accidental</p></li></ol><h3 id="ConfiguraciónVertexTraining-2.ArtifactRegistry">2. Artifact Registry</h3><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Los comandos mostrados asumen que la zona usada es us-central1</p></div></div><p>Habiendo probado previamente la imagen de docker en un entorno local, se deben ejecutar los siguientes pasos para subirla al repositorio</p><ul><li><p>Configurar gcloud para que actúe como intermediario de autenticación de docker</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence" data-theme="Confluence">gcloud auth configure-docker us-central1-docker.pkg.dev</pre>
+</div></div><ul><li><p>Obtener el identificador del proyecto</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence" data-theme="Confluence">gcloud config list project --format &quot;value(core.project)&quot;
+&gt; aigroup-325213
+
+# Si el proyecto no esta configurado usar
+gcloud config set project aigroup-325213</pre>
+</div></div><ul><li><p>Configurar los parámetros para la creación de la imagen (ejemplo linux)</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence" data-theme="Confluence">export PROJECT_ID=$(gcloud config list project --format &quot;value(core.project)&quot;)
+# Repositorio en artifact registry
+export REPO_NAME=REPOSITORY_NAME
+# Nombre de la imagen docker
+export IMAGE_NAME=IMAGE_NAME
+# Tag de la imagen (utilizar para versionamiento)
+export IMAGE_TAG=IMAGE_TAG
+# URI de la imagen resultante
+export IMAGE_URI=us-central1-docker.pkg.dev/${PROJECT_ID}/${REPO_NAME}/${IMAGE_NAME}:${IMAGE_TAG}</pre>
+</div></div><p>Por ejemplo (usando PowerShell en Windows):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: powershell; gutter: false; theme: Confluence" data-theme="Confluence">$env:PROJECT_ID=&quot;aigroup-325213&quot;
+$env:REPO_NAME=&quot;customized-training&quot;
+$env:IMAGE_NAME=&quot;efficientdet-vertex-training&quot;
+$env:IMAGE_TAG=&quot;0.1&quot;
+$env:IMAGE_URI=&quot;us-central1-docker.pkg.dev/${env:PROJECT_ID}/${env:REPO_NAME}/${env:IMAGE_NAME}:${env:IMAGE_TAG}&quot;
+
+Write-Host ${env:IMAGE_URI}
+# us-central1-docker.pkg.dev/aigroup-325213/customized-training/efficientdet-vertex-training:0.1</pre>
+</div></div><ul><li><p>Construir la imagen</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"># Estando en la carpeta con la imagen a construir ejecutar
+docker build -f Dockerfile -t ${IMAGE_URI} ./
+
+# Windows
+docker build -f Dockerfile -t ${env:IMAGE_URI} ./</pre>
+</div></div><p>También, puede construir la image directamente sin variables de entorno.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">docker build -f Dockerfile -t us-central1-docker.pkg.dev/${PROJECT_ID}/${REPO_NAME}/${IMAGE_NAME}:${IMAGE_TAG} ./</pre>
+</div></div><ul><li><p>Subir la imagen a artifact registry</p></li></ul><p>Este proceso tardará dependiendo del tamaño de la imagen, de la conexión a internet y de si la imagen se ha subido alguna vez a Google (en cuyo caso será más rápido). Si el proceso se corta por algún motivo es posible re-ejecutar el comando y este continuara donde iba</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"># Linux
+docker push ${IMAGE_URI}
+
+# Windows
+docker push ${env:IMAGE_URI}</pre>
+</div></div><h3 id="ConfiguraciónVertexTraining-3.Lanzarunentrenamientopersonalizadodeprueba">3. Lanzar un entrenamiento personalizado de prueba</h3><p><a href="https://aituring.atlassian.net/wiki/spaces/IADC/pages/1463681025/Ejecuci+n+de+un+entrenamiento+personalizado#Vertex-Training" data-card-appearance="inline" rel="nofollow">https://aituring.atlassian.net/wiki/spaces/IADC/pages/1463681025/Ejecuci+n+de+un+entrenamiento+personalizado#Vertex-Training</a> </p><p />
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 06, 2021 20:42</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

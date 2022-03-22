@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inteligencia Artificial - documentación central : 3. Port forwarding Tensorboard</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Inteligencia Artificial - documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1432617107.html">Inteligencia Artificial - Documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1462665217.html">Procesos de configuración</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Cloud-SDK_1467973633.html">Cloud SDK</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Inteligencia Artificial - documentación central : 3. Port forwarding Tensorboard
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Daniel Tobon</span>, last modified on Oct 06, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p /><p>TensorBoard proporciona la visualización y las herramientas necesarias para la experimentación del aprendizaje automático:</p><ul><li><p>Seguimiento y visualización de métricas como pérdida y precisión</p></li><li><p>Visualización del gráfico del modelo (operaciones y capas)</p></li><li><p>Ver histogramas de pesos, sesgos u otros tensores a medida que cambian con el tiempo </p></li><li><p>Proyección de incrustaciones a un espacio dimensional inferior </p></li><li><p>Visualización de imágenes, texto y datos de audio</p></li><li><p>Profiling y mucho más</p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1480753205/1481572364.png" data-image-src="attachments/1480753205/1481572364.png" data-height="675" data-width="1200" data-unresolved-comment-count="0" data-linked-resource-id="1481572364" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="tensorboard-logo-social.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1480753205" data-linked-resource-container-version="8" data-media-id="06ce199c-7eb4-4489-b5fe-ef220454193e" data-media-type="file"></span><p /><p>En esta sección se detalla el proceso de conexión vía ssh con <a href="https://www.tensorflow.org/tensorboard" class="external-link" rel="nofollow">Tensorboard</a> desde una máquina virtual de GCP. </p><p>Esto permite la visualización en tiempo real de las métricas de entrenamiento.</p><ol><li><p>Puerto 6006</p></li></ol><p>La conexión de tensorboard a través de gcloud requiere la apertura del puerto 6006. </p><p><a href="https://docs.bitnami.com/google/faq/administration/use-firewall/" data-card-appearance="inline" class="external-link" rel="nofollow">https://docs.bitnami.com/google/faq/administration/use-firewall/</a> </p><p><a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwjegfKsmrbzAhVRRzABHQTaBjQQwqsBegQIAhAB&amp;url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DsPbBVim9Zbk&amp;usg=AOvVaw0BLMLd2GhGyiUxzqqi9PD8" data-card-appearance="inline" class="external-link" rel="nofollow">https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwjegfKsmrbzAhVRRzABHQTaBjQQwqsBegQIAhAB&amp;url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DsPbBVim9Zbk&amp;usg=AOvVaw0BLMLd2GhGyiUxzqqi9PD8</a> </p><p /><p>2. Iniciar tensorboard en máquina</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">gcloud compute instances start [INSTANCE_NAME]
+gcloud compute ssh [USER_NAME]@[INSTANCE_NAME]
+user@MY_INSTANCE:~$ tensorboard --logdir LOG_DIRECTORY </pre>
+</div></div><p /><p>3. Abrir conexión ssh</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">gcloud compute ssh [USER_NAME]@[INSTANCE_NAME] -- -NfL 6006:localhost:6006</pre>
+</div></div><p /><p>4. Abrir tensorboard en navegador web</p><p><a href="http://localhost:6006/#graphs" class="external-link" rel="nofollow">http://localhost:6006/</a></p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1480753205/1480917030.png" data-image-src="attachments/1480753205/1480917030.png" data-height="1011" data-width="1840" data-unresolved-comment-count="0" data-linked-resource-id="1480917030" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Screenshot from 2021-09-29 09-23-44.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1480753205" data-linked-resource-container-version="8" data-media-id="027ab6cc-af14-4091-b7d8-290066d5cb23" data-media-type="file"></span><p /><h2 id="id-3.PortforwardingTensorboard-Referencias">Referencias</h2><p><a href="https://www.montefischer.com/2020/02/20/tensorboard-with-gcp.html" data-card-appearance="inline" class="external-link" rel="nofollow">https://www.montefischer.com/2020/02/20/tensorboard-with-gcp.html</a> </p><p><a href="https://www.apoehlmann.com/blog/connecting-tensorboard-your-google-cloud-vm-port-forwarding/" data-card-appearance="inline" class="external-link" rel="nofollow">https://www.apoehlmann.com/blog/connecting-tensorboard-your-google-cloud-vm-port-forwarding/</a> </p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1480753205/1481572364.png">tensorboard-logo-social.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1480753205/1480917030.png">Screenshot from 2021-09-29 09-23-44.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 06, 2021 20:42</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

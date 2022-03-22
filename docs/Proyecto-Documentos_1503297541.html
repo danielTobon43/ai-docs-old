@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inteligencia Artificial - documentación central : Proyecto Documentos</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Inteligencia Artificial - documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1432617107.html">Inteligencia Artificial - Documentación central</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Inteligencia Artificial - documentación central : Proyecto Documentos
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Maria Jose Ocampo Vargas</span>, last modified on Nov 16, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h2 id="ProyectoDocumentos-Paper-RepresentationLearningforInformationExtraction(Google)">Paper - Representation Learning for Information Extraction (Google)</h2><h3 id="ProyectoDocumentos-Observations">Observations</h3><ul><li><p>Each field often corresponds to a well-understood type (i.e alphanumerical, currency, date, etc).</p></li><li><p>Each field instance is usually associated with a key phrase that bears an apparent visual relationship with it.</p></li><li><p>Key phrases for a field are largely drawn from a small vocabulary of field-specific variants.</p></li></ul><h3 id="ProyectoDocumentos-Pipeline">Pipeline</h3><div class="table-wrap"><table data-layout="default" data-local-id="f616ca79-5792-4602-85b6-e4bed5ed4a86" class="confluenceTable"><colgroup><col style="width: 226.67px;"/><col style="width: 226.67px;"/><col style="width: 226.67px;"/></colgroup><tbody><tr><th class="confluenceTh"><p><strong>1. Ingestion</strong></p></th><th class="confluenceTh"><p><strong>2. Candidate Generation</strong></p></th><th class="confluenceTh"><p><strong>3. Scoring and Assignment</strong></p></th></tr><tr><td class="confluenceTd"><p>Ingest both native digital as well as scanned documents.</p><p><strong>Steps</strong></p><ol><li><p>Render each doc to an image</p></li><li><p>Use OCR services to generate a bounding box for each word/letter/symbol</p></li></ol></td><td class="confluenceTd"><p>Associate each field type to  1…* candidate generators. </p><p>Each generator use a cloud-based entity extraction services to detect spans of the OCR text that are instances of the corresponding type.</p><p><strong>Example</strong></p><p>Each date in an invoice becomes a candidate for every date field in the target schema</p></td><td class="confluenceTd"><p><strong>Steps</strong></p><ol><li><p>Compute a score in range [0,1] for each candidate independently using a Neural Network.</p></li><li><p>Assign for each field the scored candidate that is most likely too be the true extraction.</p></li></ol></td></tr></tbody></table></div><h3 id="ProyectoDocumentos-NeuralNetworkModel">Neural Network Model</h3><span class="confluence-embedded-file-wrapper image-left-wrap-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-wrap-left" width="340" loading="lazy" src="attachments/1503297541/1504739335.png?width=340" data-image-src="attachments/1503297541/1504739335.png" data-height="978" data-width="1206" data-unresolved-comment-count="0" data-linked-resource-id="1504739335" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="imagen-20211109-160718.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1503297541" data-linked-resource-container-version="3" data-media-id="02188a6c-c62e-462d-8338-6bc953fbbb51" data-media-type="file"></span><p><strong>g) Candidate Position</strong></p><p><strong>Original Model:</strong> 2D Cartesian coordinates of the bounding box centroid. Normalized by the image dimensions (height and width).</p><p><strong>Our model:</strong> 2D Cartesian coordinates of the bounding box (xmin, ymin, xmax, ymax). Normalized the same way.</p><p><strong>a) Neighbor Text: </strong>represents the text inside the neighbor bounding box.</p><p><strong>b) Neighbor Position: </strong>Difference between the neighbor 2D normalized coordinates and <strong>g) Candidate Position</strong> .</p><p><strong>c) Neighbor Embedding:  </strong>Text tokens are embedded using a word embedding table in the original model, in ours are embedded using BERT. Neighbor relative position is embedded using a two ReLU activated layers with dropout.</p><p><strong>d) Neighbor Encoding:</strong> Concatenate a neighbor Text Embedding and Position Embedding.</p><p><strong>f) Neighborhood Encoding: </strong>result of the self attention mechanism.</p><p><strong>h)</strong> <strong>Candidate Position Embedding:</strong> is embedded using just a linear layer.</p><p><strong>i) Candidate Encoding: </strong>the result of a linear layer of the concatenation between <strong>Neighborhood Encoding</strong> &amp; <strong>Candidate Position Embedding</strong>.</p><p><strong>k) Field Embedding:</strong> also use an embedding table for the field ID.</p><p><strong>l) Score: </strong>Cosine distance between <strong>Field Embedding</strong> &amp; <strong>Candidate Encoding</strong>. Then, we add 1 and divide by 2 to get a number in range [0,1].</p><h3 id="ProyectoDocumentos-Training">Training</h3><p>The model is trained using <strong>binary cross-entropy loss</strong> between the prediction and the target label as loss function. <strong>The prediction will be a number between 0 and 1</strong>, that represents the likelihood to be the true extraction; <strong>the target label will be 0 or 1</strong>: 0 for the false extractions and 1 for the true ones.</p><p>Intuitively, this architecture ensures that the positives candidates for a field cluster together near its field embedding and that these clusters are set far apart from each other.</p><p>Used <strong>Rectified Adam Optimizer</strong> with a <strong>learning rate of 0.001 for 50 epochs.</strong></p><p>Measured the performance of the model’s scoring predictions using <strong>ROC AUC on the test split</strong>. Also analyzed its performance context of the overall extraction system using the accuracy of the end-to-end extraction results as measured by the maximum F1 score over all decision thresholds, average across all the fields in the target schema.</p><p>Choose the dimension size for the model using a <strong>grid- based hyperparameter search</strong>. All metrics were obtained from performing<strong> 10 training runs </strong>&amp; picking the model with the <strong>best ROC AUC</strong>.</p><p /><h2 id="ProyectoDocumentos-GitHub/Colab-ReLIE">GitHub/Colab - ReLIE</h2><p>El modelo está implementado en PyTorch.</p><h3 id="ProyectoDocumentos-Paso1.Anotación">Paso 1. Anotación</h3><p>Herramienta de etiquetado con bounding boxes. Para la semana del 8 de noviembre están implementadas las siguientes etiquetas:</p><div class="table-wrap"><table data-layout="default" data-local-id="7f579dd6-0376-4ce6-b326-e9e7c39ac0c4" class="confluenceTable"><colgroup><col style="width: 340.0px;"/><col style="width: 340.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><ul><li><p>invoice_number</p></li></ul></td><td class="confluenceTd"><ul><li><p>subtotal</p></li></ul></td></tr><tr><td class="confluenceTd"><ul><li><p>invoice_data</p></li></ul></td><td class="confluenceTd"><ul><li><p>total_tax_amount</p></li></ul></td></tr><tr><td class="confluenceTd"><ul><li><p>total_amount</p></li></ul></td><td class="confluenceTd"><ul><li><p>supplier_name</p></li></ul></td></tr></tbody></table></div><p><strong>Salida:</strong> La salida del proceso de anotación debe ser un archivo XML en formato PascalVOC con el nombre de la imagen.</p><h4 id="ProyectoDocumentos-Consideracionesadicionales">Consideraciones adicionales</h4><ul><li><p>Solo se encierra en la bounding box el valor del campo, por ejemplo, se encierra la fecha <strong>01/01/20</strong> más no el texto asociado <strong>fecha</strong>.</p></li><li><p>Para el total_amount solo se selecciona el valor numérico, es decir, se omite cualquier otro símbolo adicional <strong>$</strong>.</p></li><li><p>Se debe tener cuidado al seleccionar el número de factura, no todos los establecimientos lo manejan igual.</p></li></ul><h3 id="ProyectoDocumentos-Paso2.GeneracióndeOCRs">Paso 2. Generación de OCRs</h3><p>Utilizan <code>tesseract 4.0</code> para realizar la extracción de datos (OCR) a partir de las imágenes de facturas. Tienen un script que realiza el proceso de extracción sobre todas las imágenes de una carpeta.</p><p><code>$ python generate_tesseract_results.py</code></p><p /><p>Nuestra solución utiliza la herramienta <strong>DocumentsAI</strong> para el proceso de anotación y generación de OCRs.</p><h3 id="ProyectoDocumentos-Paso3.Extraccióndecandidatos">Paso 3. Extracción de candidatos</h3><p>Tienen un script (<code>extract_candidates.py</code>) que recibe como entrada los resultados del OCR y genera un diccionario con un listado de candidatos para cada uno de los campos/etiquetas, así:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">candidate_data = {
+            &#39;invoice_number&#39;: invoice_no_candidates,
+            &#39;invoice_date&#39;: invoice_date_candidates,
+            &#39;total_amount&#39;: total_amount_candidates,
+            &#39;subtotal&#39;: total_amount_candidates,
+            &#39;total_tax_amount&#39;: total_amount_candidates,
+            &#39;supplier_name&#39;: supplier_name_candidates
+        }</pre>
+</div></div><p>Para cada uno de los campos existe una función que extrae los candidatos, ya sea mediante expresiones regulares o librerías externas. El script está diseñado para realizar la extracción de una sola factura, por lo tanto, para hacer la generación masiva se utiliza la siguiente función:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">def get_candidates_for_dataset(tesseract_results_dir, candidates_dir):
+    t_results = glob(os.path.join(tesseract_results_dir, &#39;*.json&#39;))
+    
+    for t_result in tqdm(t_results, desc=&#39;Extracting Candidates&#39;):
+        filename = os.path.splitext(os.path.split(t_result)[-1])[0]
+        with open(os.path.join(tesseract_results_dir, filename + &#39;.json&#39;), &#39;r&#39;) as f:
+            jsonContent = f.read()
+            data = json.loads(jsonContent)
+            candidates = get_candidates(data)
+        with open(os.path.join(candidates_dir, filename + &#39;.json&#39;), &#39;w&#39;) as f:
+            json.dump(candidates, f)</pre>
+</div></div><h4 id="ProyectoDocumentos-3.1Procesoparañadirunanuevaetiquetaomodificarlas">3.1 Proceso par añadir una nueva etiqueta o modificarlas</h4><ol><li><p>Implementar el proceso de extracción en el archivo <code>extract_candidates.py</code> y añadirlo a la respuesta de la función <code>get_candidates</code> del mismo archivo usando como llave el nombre del campo/etiqueta.</p></li><li><p>Modificar/añadir el nombre de la etiqueta al diccionario <code>annotation_data</code>, tomando como ejemplo las que ya están, en el campo <code>fields</code> del archivo <code>utils/xml_parser.py</code>. </p></li></ol><h3 id="ProyectoDocumentos-Paso4.Definirtrain,valytestsplits">Paso 4. Definir train, val y test splits</h3><p>Se utiliza un script que genera 3 archivos de texto, uno por cada split, con los nombres de las imágenes que se utilizaran para cada uno de los splits. La división es 60% (train) - 20% (val) - 20% (test).</p><p><code>$ python3 utils/prepare_split.py</code></p><h3 id="ProyectoDocumentos-Paso5.Configuracióndehiperparámetros">Paso 5. Configuración de hiperparámetros</h3><p>Los hiperparámetros de la red se pueden modificar en el archivo <code>utils/config.py</code></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: py; gutter: false; theme: Confluence" data-theme="Confluence">NEIGHBOURS = 4        # Número de vecinos de cada candidatos
+HEADS = 4             # Número de cabezas del mecanismo de atención
+EMBEDDING_SIZE = 128  # Tamaño de los embeddings
+VOCAB_SIZE = 1024     # Tamaño del vocabulario
+BATCH_SIZE = 128      # Tamaño del batch
+EPOCHS = 10           # Número de épocas
+LR = 0.0003008881959508269 # Tasa de apendizaje</pre>
+</div></div><h3 id="ProyectoDocumentos-Paso6.Entrenamiento/Train">Paso 6. Entrenamiento/Train</h3><p>Una vez configurados los hiperparámetros se puede entrenar la red utilizando:</p><p><code>$ python3 train.py</code></p><p>Los resultados de desempeño de los entrenamientos se pueden visualizar el TensorBoard, desde Colab se puede hacer utilizando los siguientes comandos:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">%load_ext tensorboard
+%tensorboard --logdir=runs</pre>
+</div></div><h3 id="ProyectoDocumentos-Paso7.Búsquedadehiperparámetros">Paso 7. Búsqueda de hiperparámetros</h3><p>Si se desea realizar Hyperparameter Tuning se puede utilizar el script <code>hyperparameter_tuning.py</code> el cual se encuentra comentado con el paso a paso. En este momento realiza una búsqueda aleatoria sobre los siguientes espacios de búsqueda para todos los hiperparámetros:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: py; gutter: false; theme: Confluence" data-theme="Confluence">NEIGHBOURS: [4, 8, 10, 16],
+EMBEDDING_SIZE: [16, 64, 128],
+HEADS: [2, 4, 8, 16],
+LR: loguniform(1e-4, 1e-1),
+BATCH_SIZE: [16, 32, 64, 128]</pre>
+</div></div><p>Debido a que el modelo utiliza BERT para los embeddings, se necesitan aproximadamente 40GB de almacenamiento disponible para realizar una búsqueda de 10 configuraciones aleatorias.</p><h3 id="ProyectoDocumentos-Paso8.Evaluación">Paso 8. Evaluación</h3><p>Para realizar la evaluación del modelo sobre alguno de los splits obtenidos en el paso 4 se puede hacer así:</p><p><code>$ python3 evaluate.py</code></p><p>Dependiendo del split seleccionado es necesario modificar el script <code>evaluate.py</code> en la línea <code>64</code>, específicamente el <code>split_name</code>.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">doc_data = dataset.DocumentsDataset(config_neig=config.NEIGHBOURS, split_name=&#39;test&#39;)</pre>
+</div></div><h3 id="ProyectoDocumentos-Paso9.Inferencia">Paso 9. Inferencia</h3><p>Para la inferencia también se cuenta con un script (<code>inference.py</code>) el cual debe ser ejecutado así:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">$ python3 inference.py --image &#39;60be1f3ed7cd00a2aebbab106f728bd9-1623627126680.jpg&#39; --ocr &#39;60be1f3ed7cd00a2aebbab106f728bd9-1623627126680.json&#39; --cached_pickle output/dataset\(esp\)/cached_data_train_16.pickle --load_saved_model output/model.pth --visualize --cuda</pre>
+</div></div><p>Los parámetros son los siguientes:</p><p><code>-- image # ruta de la imagen de la que se desea hacer inferencia</code></p><p><code>-- ocr # ruta de los resultados del OCR de la imagen de la que se desea hacer inferencia</code></p><p><code>-- cached_pickle # los datos utilizados durante el entrenamiento en formato pickle</code></p><p><code>-- load_saved_model # la ruta del mejor modelo almacenado durante el entrenamiento</code></p><p><code>-- visualize # si se desea generar una imagen donde se visuzalicen los resultados del modelo</code></p><p><code>-- cuda # si desea utilizar un dispositivo CUDA</code></p><p>Esto dará como resultado un diccionario con los candidatos seleccionados para cada una de las etiquetas así:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: py; gutter: false; theme: Confluence" data-theme="Confluence">{
+  &#39;invoice_number&#39;: &#39;2020&#39;, 
+  &#39;total_amount&#39;: &#39;10&#39;, 
+  &#39;subtotal&#39;: &#39;10&#39;, 
+  &#39;total_tax_amount&#39;: &#39;10&#39;, 
+  &#39;supplier_name&#39;: &#39;Colombiana de Comercio / S.A .&#39;
+}</pre>
+</div></div><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1503297541/1504739335.png">imagen-20211109-160718.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1503297541/1504608268.png">imagen-20211109-160717.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 06, 2021 20:41</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

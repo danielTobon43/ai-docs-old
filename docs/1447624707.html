@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inteligencia Artificial - documentación central : Monitoreo de máquinas provisional</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Inteligencia Artificial - documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1432617107.html">Inteligencia Artificial - Documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1462665217.html">Procesos de configuración</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Inteligencia Artificial - documentación central : Monitoreo de máquinas provisional
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Camilo H</span>, last modified on Sep 09, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>Para efectuar la utilización eficiente de las máquinas de entrenamiento se configuran 2 alarmas con la herramienta netdata</p><ol><li><p>Validar cada 3 horas, si el uso de la GPU ha superado el 0% en esas 3 horas</p></li><li><p>Validar cada 3 horas, si existe más de 1 proceso asociado a una GPU</p></li></ol><p>Si una de las 2 NO se cumple, se dispara una alerta tipo warning a la sala de hangouts “Monitoreo producción“ o “Inteligencia Artificial” dependiendo si la máquina es de producción o de pruebas. </p><p>Esta alerta se repetirá cada 15 minutos; si la máquina no es apagada y nuevamente pasan otras 3 horas (total: 6 horas) se enviará una alerta crítica que será repetida cada 5 minutos</p><p><strong>Ejemplo de la alerta enviada:</strong></p><span class="confluence-embedded-file-wrapper image-left-wrapper"><img class="confluence-embedded-image image-left" loading="lazy" src="attachments/1447624707/1448148993.png" data-image-src="attachments/1447624707/1448148993.png" data-height="371" data-width="344" data-unresolved-comment-count="0" data-linked-resource-id="1448148993" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="imagen-20210907-194425.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1447624707" data-linked-resource-container-version="12" data-media-id="1caaeaed-b1da-4b39-a5d3-3957bb01ec69" data-media-type="file"></span><h2 id="Monitoreodemáquinasprovisional-Máquinasconfiguradasconlasalertas">Máquinas configuradas con las alertas</h2><ul class="inline-task-list" data-inline-tasks-content-id="1447624707"><li class="checked" data-inline-task-id="35"><span class="placeholder-inline-tasks">training-1</span></li><li class="checked" data-inline-task-id="36"><span class="placeholder-inline-tasks">training-2</span></li><li class="checked" data-inline-task-id="37"><span class="placeholder-inline-tasks">training-2-new</span></li><li class="checked" data-inline-task-id="38"><span class="placeholder-inline-tasks">training-3</span></li><li class="checked" data-inline-task-id="39"><span class="placeholder-inline-tasks">training-4</span></li><li class="checked" data-inline-task-id="40"><span class="placeholder-inline-tasks">training-5</span></li><li data-inline-task-id="41"><span class="placeholder-inline-tasks">efficiendet-training-2 (En lugar de 3 horas se usan 6 horas, por ser máquinas de prueba) - No fue posible instalar porque no se puede conectarse a la máquina por SSH</span></li><li class="checked" data-inline-task-id="42"><span class="placeholder-inline-tasks">efficiendet-training-3 (En lugar de 3 horas se usan 6 horas, por ser máquinas de prueba)</span></li><li class="checked" data-inline-task-id="43"><span class="placeholder-inline-tasks">johnnew-efficientdet (En lugar de 3 horas se usan 6 horas, por ser máquinas de prueba)</span></li></ul><p /><h2 id="Monitoreodemáquinasprovisional-Almacenamientodeinformación">Almacenamiento de información</h2><p>Netdata es una herramienta que registra todo tipo de métricas por lo que la recopilación de datos quedará configurada (cada 2 segundos) y el tamaño destinado será de 4GB para almacenar métricas, lo que equivale a almacenar más de 15 días continuos de monitoreo</p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1447624707/1448148993.png">imagen-20210907-194425.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1447624707/1448181764.png">imagen-20210907-194425.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 06, 2021 20:42</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

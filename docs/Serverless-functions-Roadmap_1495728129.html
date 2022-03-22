@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inteligencia Artificial - documentación central : Serverless functions Roadmap</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Inteligencia Artificial - documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1432617107.html">Inteligencia Artificial - Documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Roadmap-pipeline-entrenamiento_1446871041.html">Roadmap pipeline entrenamiento</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Inteligencia Artificial - documentación central : Serverless functions Roadmap
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Camilo H</span>, last modified on Oct 26, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="panel" style="background-color: #EAE6FF;border-color: #998DD9;border-width: 1px;"><div class="panelContent" style="background-color: #EAE6FF;">
+<h2 id="ServerlessfunctionsRoadmap-Objetivogeneral">Objetivo general</h2><p>Entrenamiento de modelos a través de las plataformas Vertex/Sagemaker usando una cloud function y/o lambda function</p>
+</div></div><p /><h2 id="ServerlessfunctionsRoadmap-Projectinformation"><img class="emoticon emoticon-blue-star" data-emoji-id="1f517" data-emoji-shortname=":link:" data-emoji-fallback="🔗" src="images/icons/emoticons/72/1f517.png" width="16" height="16" data-emoticon-name="blue-star" alt="(blue star)"/> Project information</h2><p><strong>Repositorio</strong></p><p><a href="https://bitbucket.org/aituring/serverless-functions-training" data-card-appearance="inline" class="external-link" rel="nofollow">https://bitbucket.org/aituring/serverless-functions-training</a> </p><h2 id="ServerlessfunctionsRoadmap-Fasesdedesarrollo"><img class="emoticon emoticon-blue-star" data-emoji-id="1f4cb" data-emoji-shortname=":clipboard:" data-emoji-fallback="📋" src="images/icons/emoticons/72/1f4cb.png" width="16" height="16" data-emoticon-name="blue-star" alt="(blue star)"/> Fases de desarrollo</h2><p>El proyecto actualmente se encuentra estructurado en 4 fases, cada fase representada por una épica con resumen de las tareas generales para completar la fase</p><h3 id="ServerlessfunctionsRoadmap-Fase1">Fase 1</h3><p><a href="https://aituring.atlassian.net/browse/IAT-1" data-card-appearance="inline" class="external-link" rel="nofollow">https://aituring.atlassian.net/browse/IAT-1</a></p><div class="table-wrap"><table data-layout="default" data-local-id="432f4af5-58a7-4b7c-843e-93cbc794898a" class="confluenceTable"><colgroup><col style="width: 240.0px;"/><col style="width: 79.0px;"/><col style="width: 441.0px;"/></colgroup><tbody><tr><th class="confluenceTh"><p><strong>Feature</strong></p></th><th class="confluenceTh"><p><strong>Status</strong></p></th><th class="confluenceTh"><p><strong>Notes</strong></p></th></tr><tr><td class="confluenceTd"><p>Creación de entrenamientos</p></td><td class="confluenceTd"><p><span class="status-macro aui-lozenge aui-lozenge-success">DONE</span></p></td><td class="confluenceTd"><p>Se crean usando una imagen de docker tfv1 con efficientdet</p></td></tr><tr><td class="confluenceTd"><p>Obtener el estado de un entrenamiento</p></td><td class="confluenceTd"><p><span class="status-macro aui-lozenge aui-lozenge-success">DONE</span> </p></td><td class="confluenceTd"><p>Estados posibles en <a href="https://cloud.google.com/vertex-ai/docs/reference/rest/v1/JobState" data-card-appearance="inline" class="external-link" rel="nofollow">https://cloud.google.com/vertex-ai/docs/reference/rest/v1/JobState</a> </p></td></tr><tr><td class="confluenceTd"><p>Listado de entrenamientos</p></td><td class="confluenceTd"><p><span class="status-macro aui-lozenge aui-lozenge-success">DONE</span> </p></td><td class="confluenceTd"><p>El listado está paginado y se puede filtrar por estado y display name</p></td></tr><tr><td class="confluenceTd"><p>Cancelación de entrenamiento</p></td><td class="confluenceTd"><p><span class="status-macro aui-lozenge aui-lozenge-success">DONE</span> </p></td><td class="confluenceTd"><p>La cancelación es asíncrona</p></td></tr><tr><td class="confluenceTd"><p>Ejecución automatizada de pruebas </p></td><td class="confluenceTd"><p><span class="status-macro aui-lozenge aui-lozenge-success">DONE</span> </p></td><td class="confluenceTd"><p>Se ejecutan 18 pruebas unitarias en Bitbucket pipelines</p></td></tr><tr><td class="confluenceTd"><p>Despliegue automatizado de una GCF</p></td><td class="confluenceTd"><p><span class="status-macro aui-lozenge aui-lozenge-success">DONE</span> </p></td><td class="confluenceTd"><p>Se despliega 1 entorno (Staging GCF AIGroup), NO está desplegado en producción (inference)</p></td></tr></tbody></table></div><h3 id="ServerlessfunctionsRoadmap-Fase2">Fase 2</h3><p>
+
+    
+
+            
+
+
+
+    <span class="confluence-jim-macro jira-issue" data-jira-key="IAT-302" >
+                <a href="https://aituring.atlassian.net/browse/IAT-302" class="jira-issue-key"><img class="icon" src="https://aituring.atlassian.net/secure/viewavatar?size=medium&amp;avatarId=10307&amp;avatarType=issuetype" />IAT-302</a>
+                    -
+            <span class="summary">Serverless functions Fase 2</span>
+                                                            <span class="aui-lozenge aui-lozenge-subtle aui-lozenge-current jira-macro-single-issue-export-pdf">In Progress</span>
+            </span>
+</p><div class="table-wrap"><table data-layout="default" data-local-id="c60b9f58-0506-479f-9e52-03020dce5fcd" class="confluenceTable"><colgroup><col style="width: 240.0px;"/><col style="width: 79.0px;"/><col style="width: 441.0px;"/></colgroup><tbody><tr><th class="confluenceTh"><p><strong>Feature</strong></p></th><th class="confluenceTh"><p><strong>Status</strong></p></th><th class="confluenceTh"><p><strong>Notes</strong></p></th></tr><tr><td class="confluenceTd"><p>Versionamiento del API</p></td><td class="confluenceTd"><p><span class="status-macro aui-lozenge">TO DO</span></p></td><td class="confluenceTd"><p>Estructuras requeridas para mantener la compatibilidad entre versiones</p></td></tr><tr><td class="confluenceTd"><p>Utilización de tensorflow v2 para la creación del entrenamiento</p></td><td class="confluenceTd"><p><span class="status-macro aui-lozenge">TO DO</span></p></td><td class="confluenceTd"><p>Análisis de nuevos parámetros a enviar y almacenamiento de resultados</p></td></tr><tr><td class="confluenceTd"><p>Inclusión de callbacks para notificación de estado del entrenamiento</p></td><td class="confluenceTd"><p><span class="status-macro aui-lozenge">TO DO</span></p></td><td class="confluenceTd"><p>Estados evaluados</p><ul><li><p>DESCARGANDO DATASET</p></li><li><p>CREANDO TFRECORDS</p></li><li><p>EJECUTANDO ENTRENAMIENTO</p></li><li><p>EJECUTANDO FREEZE</p></li></ul></td></tr><tr><td class="confluenceTd"><p>Conexión con el dataset en AWS para evitar enlaces públicos</p></td><td class="confluenceTd"><p><span class="status-macro aui-lozenge">TO DO</span></p></td><td class="confluenceTd"><p /></td></tr><tr><td class="confluenceTd"><p>Separación de la configuración de variables en bitbucket-pipelines a YAML </p></td><td class="confluenceTd"><p><span class="status-macro aui-lozenge">TO DO</span></p></td><td class="confluenceTd"><p /></td></tr><tr><td class="confluenceTd"><p>Pruebas de sistemas</p></td><td class="confluenceTd"><p><span class="status-macro aui-lozenge">TO DO</span></p></td><td class="confluenceTd"><p>Ejecución de pruebas una vez la función se despliega en un entorno de producción</p></td></tr><tr><td class="confluenceTd"><p>Permisos de acceso a la cloud function </p></td><td class="confluenceTd"><p><span class="status-macro aui-lozenge">TO DO</span></p></td><td class="confluenceTd"><p>Actualmente la función es pública por lo que cualquiera con la URL puede usar la API</p></td></tr></tbody></table></div><h3 id="ServerlessfunctionsRoadmap-Fase3">Fase 3</h3><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Estado: no iniciada 2021-10-20 (adicionar la épica cuando se inicie)</p></div></div><div class="table-wrap"><table data-layout="default" data-local-id="30a1939f-9e5e-4b3a-9228-88c9d5d2d2b3" class="confluenceTable"><colgroup><col style="width: 240.0px;"/><col style="width: 79.0px;"/><col style="width: 441.0px;"/></colgroup><tbody><tr><th class="confluenceTh"><p><strong>Feature</strong></p></th><th class="confluenceTh"><p><strong>Status</strong></p></th><th class="confluenceTh"><p><strong>Notes</strong></p></th></tr><tr><td class="confluenceTd"><p>Selección de región Vertex</p></td><td class="confluenceTd"><p><span class="status-macro aui-lozenge">TO DO</span></p></td><td class="confluenceTd"><p>Permite seleccionar la región de ejecución de entrenamiento</p></td></tr><tr><td class="confluenceTd"><p>Fallback de regiones</p></td><td class="confluenceTd"><p><span class="status-macro aui-lozenge">TO DO</span></p></td><td class="confluenceTd"><p>Detectar 429 y cambiar de forma automática a otra región </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">google.api_core.exceptions.ResourceExhausted: 429 Quota exceeded for quota metric &#39;Job or LRO submission requests&#39; and limit &#39;Job or LRO submission requests per minute per region&#39; of service &#39;aiplatform.googleapis.com&#39; for consumer &#39;project_number:323577353205&#39;.</pre>
+</div></div></td></tr><tr><td class="confluenceTd"><p>Prefijo de los tests por entorno test, staging</p></td><td class="confluenceTd"><p><span class="status-macro aui-lozenge">TO DO</span></p></td><td class="confluenceTd"><p>Actualmente todos los jobs creados tienen el prefijo test, pero este debe cambiar según el entorno (facilita el borrado masivo de registros)</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"># Entorno test
+{&quot;display_name&quot;: f&quot;test-unit-test-eps-5-creation&quot;}
+
+# Entorno staging
+{&quot;display_name&quot;: f&quot;staging-unit-test-eps-5-creation&quot;}</pre>
+</div></div></td></tr><tr><td class="confluenceTd"><p>Mock completo de pruebas unitarias</p></td><td class="confluenceTd"><p><span class="status-macro aui-lozenge">TO DO</span></p></td><td class="confluenceTd"><p>Las pruebas unitarias no deberían interactuar con Vertex, solo las pruebas de sistema y/o integración</p></td></tr></tbody></table></div><p /><h3 id="ServerlessfunctionsRoadmap-Fase4">Fase 4</h3><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Estado: no iniciada 2021-10-20 (adicionar la épica cuando se inicie)</p></div></div><div class="table-wrap"><table data-layout="default" data-local-id="c027b96b-705f-47a7-a91b-519d9f9e3c29" class="confluenceTable"><colgroup><col style="width: 240.0px;"/><col style="width: 79.0px;"/><col style="width: 441.0px;"/></colgroup><tbody><tr><th class="confluenceTh"><p><strong>Feature</strong></p></th><th class="confluenceTh"><p><strong>Status</strong></p></th><th class="confluenceTh"><p><strong>Notes</strong></p></th></tr><tr><td class="confluenceTd"><p>Análisis de inclusión SageMaker</p></td><td class="confluenceTd"><p><span class="status-macro aui-lozenge">TO DO</span></p></td><td class="confluenceTd"><p>Tareas relacionadas con (docker, pruebas de ejecución)</p></td></tr><tr><td class="confluenceTd"><p>Inclusión de Sagemaker para lanzar el entrenamiento</p></td><td class="confluenceTd"><p><span class="status-macro aui-lozenge">TO DO</span></p></td><td class="confluenceTd"><p>Mismas tareas de la fase 1 pero para SageMaker</p></td></tr><tr><td class="confluenceTd"><p>Parámetrización de GPU - Vertex</p></td><td class="confluenceTd"><p><span class="status-macro aui-lozenge">TO DO</span></p></td><td class="confluenceTd"><p>Actualmente la GPU está fija en V100, pero no todos los entrenamientos requieren V100 (de hecho las pruebas unitarias no requieren GPU)</p></td></tr><tr><td class="confluenceTd"><p>Docker personalizado para pipelines</p></td><td class="confluenceTd"><p><span class="status-macro aui-lozenge">TO DO</span></p></td><td class="confluenceTd"><p>Existen pasos que se repiten para la ejecución de un pipeline por ejemplo la descarga de cloud sdk, crear un docker puede ahorrar tiempo de pipelines</p></td></tr></tbody></table></div><p />
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 06, 2021 20:42</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

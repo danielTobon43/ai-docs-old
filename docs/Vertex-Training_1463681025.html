@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inteligencia Artificial - documentación central : Vertex Training</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Inteligencia Artificial - documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1432617107.html">Inteligencia Artificial - Documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Entrenamiento-Personalizado_1490714625.html">Entrenamiento Personalizado</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Inteligencia Artificial - documentación central : Vertex Training
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Camilo H</span>, last modified by <span class='editor'> Daniel Tobon</span> on Oct 14, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>El entrenamiento se puede realizar a través de la interfaz de GCP o usando gcloud en una línea de comandos</p><h3 id="VertexTraining-InterfazGCP">Interfaz GCP</h3><ol><li><p>En el proyecto AIgroup ingresar a Vertex AI</p></li><li><p>Ingresar en la sección capacitación (training)</p></li><li><p>Seleccionar la pestaña custom jobs</p></li><li><p>Hacer clic en crear</p></li></ol><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Importante que antes de hacer clic en crear, se valide que se encuentra en la pestaña correcta</p></div></div><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1463681025/1465384967.png" data-image-src="attachments/1463681025/1465384967.png" data-height="447" data-width="1454" data-unresolved-comment-count="0" data-linked-resource-id="1465384967" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="imagen-20210920-144236.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1463681025" data-linked-resource-container-version="9" data-media-id="e620d503-220e-437a-b541-a80587d980b8" data-media-type="file"></span><p>5. Verificar que la opción dataset, no contenga ningún dataset seleccionado</p><p>6. Marcar Entrenamiento personalizado (avanzado)</p><p>7. Clic en continuar</p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1463681025/1465286657.png" data-image-src="attachments/1463681025/1465286657.png" data-height="644" data-width="842" data-unresolved-comment-count="0" data-linked-resource-id="1465286657" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="imagen-20210920-140453.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1463681025" data-linked-resource-container-version="9" data-media-id="6deda218-3ade-4a3f-8f0c-60ed1985a203" data-media-type="file"></span><p>8. Ingresar el nombre del modelo</p><p>Se recomienda usar la siguiente convención:</p><p><code>training-0000-ARQUITECTURA-BACKBONE-NOMBRE</code></p><div class="confluence-information-macro confluence-information-macro-tip"><span class="aui-icon aui-icon-small aui-iconfont-approve confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Ejemplo correcto:<br/><code>training-0001-efficientdet-d1-peru-pizzas</code><br/><code>training-0043-efficientdet-d3-modelo-nuevo-dataset-combinado-17</code><br/><code>training-0053-efficientdet-d1-entrenamiento-galletas-mondelez</code></p></div></div><div class="confluence-information-macro confluence-information-macro-warning"><span class="aui-icon aui-icon-small aui-iconfont-error confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Ejemplos incorrectos:</p><p><code>training-2-efficientdet-d1-peru-pizzas</code><br/><code>training-0043-modelo</code></p></div></div><p /><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1463681025/1464139790.png" data-image-src="attachments/1463681025/1464139790.png" data-height="405" data-width="810" data-unresolved-comment-count="0" data-linked-resource-id="1464139790" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="imagen-20210920-152508.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1463681025" data-linked-resource-container-version="9" data-media-id="833ad7d6-4363-4134-9857-d7fb1545255c" data-media-type="file"></span><p>9. Usar la opción contenedor personalizado</p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1463681025/1465614337.png" data-image-src="attachments/1463681025/1465614337.png" data-height="199" data-width="828" data-unresolved-comment-count="0" data-linked-resource-id="1465614337" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="imagen-20210920-141558.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1463681025" data-linked-resource-container-version="9" data-media-id="89ea333d-08e7-4b03-bad1-c365f9d1bc6f" data-media-type="file"></span><p>10. Usar la imagen del contenedor y el bucket indicados </p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1463681025/1465352197.png" data-image-src="attachments/1463681025/1465352197.png" data-height="215" data-width="536" data-unresolved-comment-count="0" data-linked-resource-id="1465352197" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="imagen-20210920-142031.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1463681025" data-linked-resource-container-version="9" data-media-id="2b8203e3-e1cc-483e-be49-4c0e4937fdfe" data-media-type="file"></span><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Si existen más versiones se debe usar la <strong>versión 0.1</strong>, ya que es la única que ha sido probada para su validar su correcto funcionamiento</p></div></div><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1463681025/1465679873.png" data-image-src="attachments/1463681025/1465679873.png" data-height="286" data-width="567" data-unresolved-comment-count="0" data-linked-resource-id="1465679873" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="imagen-20210920-142114.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1463681025" data-linked-resource-container-version="9" data-media-id="0e33c297-fb79-4ca2-b848-e71f49da80bf" data-media-type="file"></span><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Se debe seleccionar el bucket <code>custom-training-results</code> para almacenar los resultados de todos los entrenamientos personalizados que no sean de prueba, ya que este fue configurado previamente para que vertex pueda acceder al mismo</p></div></div><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1463681025/1464205337.png" data-image-src="attachments/1463681025/1464205337.png" data-height="769" data-width="442" data-unresolved-comment-count="0" data-linked-resource-id="1464205337" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="imagen-20210920-142418.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1463681025" data-linked-resource-container-version="9" data-media-id="b11dfc40-e2fa-4aed-ad90-2422b40d962c" data-media-type="file"></span><p>11. Agregar los parámetros relacionados con la ejecución del entrenamiento</p><p>Utilizar como referencia el siguiente ejemplo:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence" data-theme="Confluence"># Nombre del script a ejecutar
+# Nombre del dataset en S3 (que sea de acceso público)
+# Nombre del backbone
+# Número de epochs
+# Batch size
+# Carpeta para guardar los pesos resultantes (usar el nombre del modelo - paso 8)
+
+./main.sh
+https://datasets-aiteam.s3.amazonaws.com/DATASET-5-FOTOS.zip
+efficientdet-d1
+5
+4
+gs://custom-training-results/training-0000-efficientdet-d1-colombia-galletas-prueba/pesos</pre>
+</div></div><p /><p>12. Clic en continuar</p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1463681025/1465221129.png" data-image-src="attachments/1463681025/1465221129.png" data-height="373" data-width="535" data-unresolved-comment-count="0" data-linked-resource-id="1465221129" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="imagen-20210920-143243.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1463681025" data-linked-resource-container-version="9" data-media-id="6a73b990-1671-4e69-808e-22649184c1c1" data-media-type="file"></span><p>13. No se configuran hiperparámetros por lo que se da clic en continuar nuevamente</p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1463681025/1465221135.png" data-image-src="attachments/1463681025/1465221135.png" data-height="402" data-width="812" data-unresolved-comment-count="0" data-linked-resource-id="1465221135" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="imagen-20210920-143408.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1463681025" data-linked-resource-container-version="9" data-media-id="4447bb0e-67f9-4223-9c77-bfe9c930c61a" data-media-type="file"></span><p>14. Seleccionar la máquina utilizada para ejecutar el entrenamiento personalizado:</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Son los parámetros recomendados, no significa que no puedan ser cambiados a voluntad</p></div></div><ul><li><p>Región: us-central1 (Iowa) (Está región debe ser la misma donde se encuentra el bucket para guardar los pesos)</p></li><li><p>Máquina: n1-standard-8</p></li><li><p>Acelerador: NVIDIA_TESLA_V100</p></li><li><p>Cantidad de aceleradores: 1</p></li><li><p>Tamaño del disco: mínimo 100 GB (depende del dataset)</p></li></ul><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Actualmente no es posible usar más de un acelerador, ya que no se ha validado el funcionamiento del entrenamiento en modo multi-gpu y tampoco en modo de entrenamiento distribuido</p></div></div><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1463681025/1465810947.png" data-image-src="attachments/1463681025/1465810947.png" data-height="742" data-width="822" data-unresolved-comment-count="0" data-linked-resource-id="1465810947" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="imagen-20210920-143954.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1463681025" data-linked-resource-container-version="9" data-media-id="e619cf7d-5683-4dd7-9d7d-c8b960345c7b" data-media-type="file"></span><p>15. Clic en continuar</p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1463681025/1464500238.png" data-image-src="attachments/1463681025/1464500238.png" data-height="202" data-width="550" data-unresolved-comment-count="0" data-linked-resource-id="1464500238" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="imagen-20210920-144049.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1463681025" data-linked-resource-container-version="9" data-media-id="0f7428a2-295a-4831-8947-b2e9ebc9da35" data-media-type="file"></span><p>16. Clic en comenzar el entrenamiento</p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1463681025/1465352209.png" data-image-src="attachments/1463681025/1465352209.png" data-height="426" data-width="795" data-unresolved-comment-count="0" data-linked-resource-id="1465352209" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="imagen-20210920-144806.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1463681025" data-linked-resource-container-version="9" data-media-id="0c2ccb39-216f-4d9a-b135-782f8015c254" data-media-type="file"></span><p>Se puede visualizar el inicio del entrenamiento personalizado al momento de ser iniciado</p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1463681025/1465286669.png" data-image-src="attachments/1463681025/1465286669.png" data-height="418" data-width="1200" data-unresolved-comment-count="0" data-linked-resource-id="1465286669" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="imagen-20210920-145548.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1463681025" data-linked-resource-container-version="9" data-media-id="c52a247e-8d27-43f5-84df-dcdf0caa8ded" data-media-type="file"></span><p /><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>El trabajo aparecerá en ambas pestañas (Training pipelines y custom jobs), puesto que se considera que es una pipeline (canalización) compuesta de un custom job</p></div></div><p>Cuando el trabajo ha finalizado exitosamente se puede visualizar un símbolo de éxito junto al custom job</p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1463681025/1466433537.png" data-image-src="attachments/1463681025/1466433537.png" data-height="49" data-width="336" data-unresolved-comment-count="0" data-linked-resource-id="1466433537" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="imagen-20210920-192406.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1463681025" data-linked-resource-container-version="9" data-media-id="b6f506f5-43f2-4438-89a3-764cdea6ac25" data-media-type="file"></span><p>Ahora es posible ir a bucket designado en el paso 11 (<code>gs://custom-training-results/training-0000-efficientdet-d1-colombia-galletas-prueba/pesos</code>)</p><p>De allí se puede extraer el modelo final, así como el progreso del entrenamiento llevado a cabo para ser analizado en tensorboard</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>El bucket  no tiene acceso público por lo que debe ser descargado y enviado si la persona, no tiene acceso a GCE AIgroup</p></div></div><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1463681025/1466564609.png" data-image-src="attachments/1463681025/1466564609.png" data-height="403" data-width="920" data-unresolved-comment-count="0" data-linked-resource-id="1466564609" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="imagen-20210920-192641.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1463681025" data-linked-resource-container-version="9" data-media-id="f30f28e7-52b5-4794-9d18-108eb3a0fceb" data-media-type="file"></span><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1463681025/1465155585.png">imagen-20210920-140153.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1463681025/1465188356.png">imagen-20210920-140153.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1463681025/1465286657.png">imagen-20210920-140453.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1463681025/1465483265.png">imagen-20210920-140958.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1463681025/1465614337.png">imagen-20210920-141558.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1463681025/1465352197.png">imagen-20210920-142031.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1463681025/1465679873.png">imagen-20210920-142114.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1463681025/1465647107.png">imagen-20210920-142340.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1463681025/1464205337.png">imagen-20210920-142418.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1463681025/1465778179.png">imagen-20210920-142627.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1463681025/1465221129.png">imagen-20210920-143243.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1463681025/1465221135.png">imagen-20210920-143408.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1463681025/1465810947.png">imagen-20210920-143954.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1463681025/1464500238.png">imagen-20210920-144049.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1463681025/1465384967.png">imagen-20210920-144236.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1463681025/1465352209.png">imagen-20210920-144806.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1463681025/1465286669.png">imagen-20210920-145548.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1463681025/1464139790.png">imagen-20210920-152508.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1463681025/1466433537.png">imagen-20210920-192406.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1463681025/1466564609.png">imagen-20210920-192641.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 06, 2021 20:44</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

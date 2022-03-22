@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inteligencia Artificial - documentación central : Sync workspace - codecommit</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Inteligencia Artificial - documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1432617107.html">Inteligencia Artificial - Documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1462665217.html">Procesos de configuración</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Bitbucket-CI-CD_1502117923.html">Bitbucket CI-CD</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Inteligencia Artificial - documentación central : Sync workspace - codecommit
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Daniel Tobon</span> on Nov 05, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>En esta sección se explica el procedimiento de sincronización de un workspace en Bitbucket a codecommit. Esto permite que cada repositorio nuevo se pueda sincronizar de manera automática utilizando una llave SSH global proporcionada al workspace de Bitbucket y el pipeline correspondiente a la sincronización.</p><p /><p><strong>Procedimiento</strong></p><ul><li><p>Llave SSH sin passphrase</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">ssh-keygen -t rsa -f ~/.ssh/[KEY-NAME] -C [USER-NAME] -N &#39;&#39;</pre>
+</div></div><ul><li><p>config file</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">Host git-codecommit.*.amazonaws.com
+User APKAQWUUSDIVPDEW3DRH
+IdentityFile ~/.ssh/codecommit_rsa</pre>
+</div></div><ul><li><p>Variables de entorno en el workspace de Bitbucket (tener en cuenta que la variable <strong>config</strong> y <strong>key</strong> deben estar codificada en base64)</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">base64 ~/.ssh/config
+base64 ~/.ssh/codecommit_rsa</pre>
+</div></div><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1503199233/1503494145.png" data-image-src="attachments/1503199233/1503494145.png" data-height="744" data-width="1229" data-unresolved-comment-count="0" data-linked-resource-id="1503494145" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Screenshot from 2021-11-05 15-42-20.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1503199233" data-linked-resource-container-version="1" data-media-id="d271843b-67d0-42e3-b640-1180e4c2b74c" data-media-type="file"></span><ul><li><p>Pipeline</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">pipelines:
+  default:
+    - step:
+        script:
+          - echo $CodeCommitKey &gt; ~/.ssh/codecommit_rsa.tmp
+          - base64 -di ~/.ssh/codecommit_rsa.tmp &gt; ~/.ssh/codecommit_rsa
+          - chmod 400 ~/.ssh/codecommit_rsa
+          - echo $CodeCommitConfig &gt; ~/.ssh/config.tmp
+          - base64 -di  ~/.ssh/config.tmp &gt; ~/.ssh/config
+          - chmod 600 ~/.ssh/config
+          - cat ~/.ssh/config
+          - set +e
+          - ssh -o StrictHostKeyChecking=no $CodeCommitHost
+          - set -e
+          - git remote add codecommit [AQUI SSH URL REPOSITORIO EN CODECOMMIT]
+          - git push codecommit $BITBUCKET_BRANCH</pre>
+</div></div><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1503199233/1503494145.png">Screenshot from 2021-11-05 15-42-20.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 06, 2021 20:42</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

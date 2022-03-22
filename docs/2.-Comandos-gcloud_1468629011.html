@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inteligencia Artificial - documentación central : 2. Comandos gcloud</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Inteligencia Artificial - documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1432617107.html">Inteligencia Artificial - Documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1462665217.html">Procesos de configuración</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Cloud-SDK_1467973633.html">Cloud SDK</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Inteligencia Artificial - documentación central : 2. Comandos gcloud
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Daniel Tobon</span>, last modified on Oct 25, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>En este apartado se explican las funciones básicas de manejo de una instancia VM utilizando gcloud. Tener en cuenta que es necesario haber realizado el punto anterior <a href="1480622081.html" data-linked-resource-id="1480622081" data-linked-resource-version="5" data-linked-resource-type="page">instalación y configuración de gcloud</a>.</p><h1 id="id-2.Comandosgcloud-ConexiónyManejo"><strong>Conexión y Manejo </strong></h1><ul><li><p>Información configuración actual</p></li></ul><p>Este comando permite obtener la información de la configuración actual de gcloud. Es importante verificar que el id del proyecto coincida con el proyecto actual en GCP. Ver más sobre <a href="https://cloud.google.com/sdk/gcloud/reference/config" class="external-link" rel="nofollow">gcloud config</a>.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">gcloud config list</pre>
+</div></div><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1468629011/1480818700.png" data-image-src="attachments/1468629011/1480818700.png" data-height="462" data-width="1846" data-unresolved-comment-count="0" data-linked-resource-id="1480818700" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="config.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1468629011" data-linked-resource-container-version="9" data-media-id="5fdde1d7-3a12-4750-8add-a5545c51206a" data-media-type="file"></span><p /><ul><li><p>Configurar proyecto/zone actual</p></li></ul><p>Este comando permite definir el proyecto y la zona actual en gcloud. Ver más <a href="https://cloud.google.com/sdk/gcloud/reference/config/set" class="external-link" rel="nofollow">gcloud config set</a>.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">gcloud config set project myProject</pre>
+</div></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">gcloud config set compute/zone us-central1-a</pre>
+</div></div><p /><ul><li><p>Iniciar una instancia VM</p></li></ul><p>Este comando permite iniciar una máquina virtual en GCP. Tener en cuenta que la instancia de la máquina ya debe existir. Ver más <a href="https://cloud.google.com/sdk/gcloud/reference/compute/instances/start" class="external-link" rel="nofollow">gcloud compute instances start</a></p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1468629011/1481277443.png" data-image-src="attachments/1468629011/1481277443.png" data-height="1055" data-width="1846" data-unresolved-comment-count="0" data-linked-resource-id="1481277443" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="gcp.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1468629011" data-linked-resource-container-version="9" data-media-id="ceb4a7e5-2cce-450f-912e-7281f44787dd" data-media-type="file"></span><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">gcloud compute instances start [VM-INSTANCE-NAME]</pre>
+</div></div><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="680" loading="lazy" src="attachments/1468629011/1480785958.png?width=680" data-image-src="attachments/1468629011/1480785958.png" data-height="131" data-width="1846" data-unresolved-comment-count="0" data-linked-resource-id="1480785958" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="con-vm-1.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1468629011" data-linked-resource-container-version="9" data-media-id="7e525c4f-eb59-49f1-8bfa-94c6dd31ccbc" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="680" loading="lazy" src="attachments/1468629011/1480982548.png?width=680" data-image-src="attachments/1468629011/1480982548.png" data-height="255" data-width="1846" data-unresolved-comment-count="0" data-linked-resource-id="1480982548" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="con-vm-2.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1468629011" data-linked-resource-container-version="9" data-media-id="9a697993-b079-4791-8c87-19c948811b8f" data-media-type="file"></span><p /><ul><li><p>Apagar una instancia VM</p></li></ul><p>Este comando permite apagar una instancia vm que esté actualmente en ejecución. Esté comando se debe ejecutar desde una terminal que <strong>no esté conectada</strong> a una instancia vm con ssh. Ver más <a href="https://cloud.google.com/sdk/gcloud/reference/compute/instances/stop" class="external-link" rel="nofollow">gcloud compute instances stop</a></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">gcloud compute instances stop [VM-INSTANCE-NAME]</pre>
+</div></div><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1468629011/1480785968.png" data-image-src="attachments/1468629011/1480785968.png" data-height="129" data-width="1846" data-unresolved-comment-count="0" data-linked-resource-id="1480785968" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="shut-down-1.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1468629011" data-linked-resource-container-version="9" data-media-id="679a6f50-83fa-4ae1-85d7-d284649be7d0" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1468629011/1481310209.png" data-image-src="attachments/1468629011/1481310209.png" data-height="162" data-width="1846" data-unresolved-comment-count="0" data-linked-resource-id="1481310209" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="shut-down-2.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1468629011" data-linked-resource-container-version="9" data-media-id="bc7c1cbf-c2bb-4950-8ee9-cd857e22cf7b" data-media-type="file"></span><p>También, se puede apagar una instancia VM desde la conexión ssh.</p><p>Opción 1:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">sudo shutdown -h now</pre>
+</div></div><p>Opción 2:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">sudo poweroff</pre>
+</div></div><p /><ul><li><p>Listar todas las instancias VM</p></li></ul><p>Este comando permite listar todas las VM disponibles en el proyecto AIGroup de GCP. El nombre y el número de instancias puede ser diferente al mostrado en la imagen.  Ver más <a href="https://cloud.google.com/sdk/gcloud/reference/compute/instances/list" class="external-link" rel="nofollow">gcloud compute instances list</a></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">gcloud compute instances list</pre>
+</div></div><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1468629011/1480654870.png" data-image-src="attachments/1468629011/1480654870.png" data-height="326" data-width="1846" data-unresolved-comment-count="0" data-linked-resource-id="1480654870" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="vm-list.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1468629011" data-linked-resource-container-version="9" data-media-id="c4e6b910-15ed-4d7e-8a41-862715f31739" data-media-type="file"></span><p /><ul><li><p>Conexión a una instancia VM</p></li></ul><p>Este comando permite la conexión mediante una clave privada ssh a una instancia VM. Por defecto, gcloud busca la clave en <code>~/.ssh/google_compute_engine</code>. De no encontrarse, gcloud va a generar una nueva solicitando información de la zona, nombre de usuario, proyecto, etc. </p><p>En caso de tener una llave personalizada, se puede incluir el flag: <code>--ssh-key-file</code>=<code>SSH_KEY_FILE</code> en el comando de abajo para indicar la ruta de la llave personalizada.</p><p>Al ejecutar con éxito el comando, un dialogo se abre para solicitar al usuario el ingreso del password asociado a la llave ssh. Ver más <a href="https://cloud.google.com/sdk/gcloud/reference/compute/ssh" class="external-link" rel="nofollow">gcloud compute ssh</a></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">gcloud compute ssh [USER-NAME]@[VM-INSTANCE-NAME]</pre>
+</div></div><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1468629011/1480720400.png" data-image-src="attachments/1468629011/1480720400.png" data-height="734" data-width="1846" data-unresolved-comment-count="0" data-linked-resource-id="1480720400" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="conexion-vm.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1468629011" data-linked-resource-container-version="9" data-media-id="bbee4bb4-8f05-48ec-b51b-b86419855f59" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1468629011/1499922433.png" data-image-src="attachments/1468629011/1499922433.png" data-height="277" data-width="446" data-unresolved-comment-count="0" data-linked-resource-id="1499922433" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Screenshot from 2021-10-08 13-55-31.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1468629011" data-linked-resource-container-version="9" data-media-id="d0f172e7-d0fd-41f8-92b0-5ee8aa92044a" data-media-type="file"></span><p /><p>Este comando también puede generar un error:</p><p><code>ERROR: (gcloud.compute.ssh) [/usr/bin/ssh] exited with return code [255].</code></p><p>Esto se debe a que la máquina virtual se está iniciando y ssh aún no se está ejecutando. No puede conectarse a una máquina virtual antes de que se esté ejecutando.</p><p>Para resolver este problema, espere hasta que la máquina virtual haya terminado de iniciarse e intente conectarse nuevamente en unos segundos. Repita el comando de arriba hasta que logre la conexión con éxito.</p><h1 id="id-2.Comandosgcloud-Transferenciadearchivos"><strong>Transferencia de archivos</strong></h1><p>En este apartado se detallan los comandos de transferencia de archivos. Estos comando se deben ejecutar desde una terminal que <strong>no esté conectada</strong> a una instancia VM con ssh. Ver más <a href="https://cloud.google.com/sdk/gcloud/reference/compute/scp" class="external-link" rel="nofollow">gcloud compte scp</a></p><p /><ul><li><p>Transferencia de archivo desde ubicación local a instancia VM</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">gcloud compute scp /path/to/file [USER-NAME]@[VM-INSTANCE-NAME]:/path/to/save</pre>
+</div></div><p /><ul><li><p>Transferencia de archivo desde instancia VM a ubicación local</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">gcloud compute scp [USER-NAME]@[VM-INSTANCE-NAME]:/path/to/file /path/to/save</pre>
+</div></div><p /><ul><li><p>Transferencia folder desde ubicación local a instancia VM</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">gcloud compute scp --recurse /path/to/folder [USER-NAME]@[VM-INSTANCE-NAME]:/path/to/save</pre>
+</div></div><p /><ul><li><p>Transferencia folder desde instancia VM a ubicación local</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">gcloud compute scp --recurse [USER-NAME]@[VM-INSTANCE-NAME]:/path/to/folder /path/to/save</pre>
+</div></div><p /><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1468629011/1481244673.png" data-image-src="attachments/1468629011/1481244673.png" data-height="318" data-width="1846" data-unresolved-comment-count="0" data-linked-resource-id="1481244673" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="copy-folder.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1468629011" data-linked-resource-container-version="9" data-media-id="15b9ec49-fa37-498e-b072-c824fa62963f" data-media-type="file"></span><p /><p><strong>Nota:</strong></p><p>Si alguno de los comandos mencionados en el punto anterior solicitan generar una nueva ssh key, es porque no se ha indicado el nombre de usuario o en su defecto, no es el nombre de usuario utilizado en la llave ssh privada.</p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1468629011/1480654870.png">vm-list.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1468629011/1480785958.png">con-vm-1.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1468629011/1480982548.png">con-vm-2.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1468629011/1480720400.png">conexion-vm.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1468629011/1481244673.png">copy-folder.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1468629011/1480785968.png">shut-down-1.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1468629011/1481310209.png">shut-down-2.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1468629011/1480818700.png">config.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1468629011/1481277443.png">gcp.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1468629011/1499922433.png">Screenshot from 2021-10-08 13-55-31.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 06, 2021 20:42</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

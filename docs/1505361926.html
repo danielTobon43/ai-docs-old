@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inteligencia Artificial - documentación central : POC | Feature detection, extraction and Matching</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Inteligencia Artificial - documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1432617107.html">Inteligencia Artificial - Documentación central</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1504804882.html">Proof of Concept | documentación</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Inteligencia Artificial - documentación central : POC | Feature detection, extraction and Matching
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Daniel Tobon</span>, last modified on Nov 24, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="contentLayout2">
+<div class="columnLayout fixed-width" data-layout="fixed-width">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><strong>Caso</strong></p><p><a href="https://aituring.atlassian.net/browse/IAT-254" data-card-appearance="inline" class="external-link" rel="nofollow">https://aituring.atlassian.net/browse/IAT-254</a> </p><p><strong>Descripción</strong></p><p>En procesamiento digital de imagenes un punto de interés o feature son patrones específicos o características específicas que sean únicas, que se puedan rastrear fácilmente, que se puedan comparar fácilmente. </p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1505984515.png" data-image-src="attachments/1505361926/1505984515.png" data-height="299" data-width="593" data-unresolved-comment-count="0" data-linked-resource-id="1505984515" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20211110-112800.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="18944ccf-c312-4d7e-9e67-9d882e36a470" data-media-type="file"></span><p style="text-align: center;"><em>Tomado de Feature extraction and similar image search with OpenCV for newbies. </em><a href="https://miro.medium.com/max/593/1*K68boX7fmtsYmyG2LlcmhQ.jpeg" class="external-link" rel="nofollow"><em>medium</em></a></p><p><strong>Pipeline</strong></p><ol><li><p>Buscamos estas características en una imagen, las encontramos, </p></li><li><p>Encontramos las mismas características en otras imágenes, </p></li><li><p>Las alineamos</p></li></ol><p>El proceso de extracción de caracteristicas consiste en identificar regiones de interes que puedan ser en común con multiples imagenes.</p><p /><h2 style="text-align: center;" id="POC|Featuredetection,extractionandMatching-Approachparafeaturedetectionandmatching">Approach para feature detection and matching</h2><p>Para este prueba de concepto se ha propuesta la implementación de multiples algoritmos de detección, extracción y alineación de caracteristicas locales. Esto permite identificar objetos en imagenes con caracteristicas similares a un template.</p><p>Algunos de los algoritmos más populares para detección y extracción de caracteristicas son:</p><ul><li><p><a href="https://medium.com/@deepanshut041/introduction-to-sift-scale-invariant-feature-transform-65d7f3a72d40" class="external-link" rel="nofollow">SIFT(Scale Invariant Feature Transform)</a></p></li><li><p><a href="https://medium.com/@deepanshut041/introduction-to-surf-speeded-up-robust-features-c7396d6e7c4e" class="external-link" rel="nofollow">SURF(Speeded Up Robust Feature)</a></p></li><li><p>BRISK (Binary Robust Invariant Scalable Keypoints)</p></li><li><p><a href="https://medium.com/@deepanshut041/introduction-to-brief-binary-robust-independent-elementary-features-436f4a31a0e6" class="external-link" rel="nofollow">BRIEF (Binary Robust Independent Elementary Features)</a></p></li><li><p><a href="https://medium.com/@deepanshut041/introduction-to-orb-oriented-fast-and-rotated-brief-4220e8ec40cf" class="external-link" rel="nofollow">ORB(Oriented FAST and Rotated BRIEF)</a></p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1505951748.png" data-image-src="attachments/1505361926/1505951748.png" data-height="252" data-width="700" data-unresolved-comment-count="0" data-linked-resource-id="1505951748" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20211110-113511.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="ee19ed83-d1f0-45bd-ba03-17d4a337987e" data-media-type="file"></span><p style="text-align: center;"><em>Tomado de Introduction To Feature Detection And Matching. </em><a href="https://medium.com/data-breach/introduction-to-feature-detection-and-matching-65e27179885d" class="external-link" rel="nofollow">medium</a><em> </em></p><p>Idealmente, esta información sería invariable bajo la transformación de la imagen, por lo que podemos encontrar la característica nuevamente incluso si la imagen se transforma de alguna manera. Después de detectar el punto de interés, calculamos un descriptor para cada uno de ellos. </p><p>Un descriptor de características es un algoritmo que toma una imagen y genera vectores de características. Los descriptores de características codifican información interesante en una serie de números y actúan como una especie de &quot;huella digital&quot; numérica que se puede utilizar para diferenciar una característica de otra.</p><p>Luego que se ha computado los descriptors de cada imagen, se procede al cálculo de la alineación de caracteristicas o “matches“ entre un par de imagenes. La coincidencia de características o la coincidencia de imágenes en general, es la tarea de establecer correspondencias entre dos imágenes de la misma escena/objeto. Una vez que las características y sus descriptores se han extraído de dos o más imágenes, el siguiente paso es establecer algunas coincidencias preliminares de características entre estas imágenes.</p><p>El procedimiento de matching es el siguiente:</p><ul><li><p>Encuentra un conjunto de puntos clave distintivos</p></li><li><p>Definir una región alrededor de cada punto clave</p></li><li><p>Extraer y normalizar el contenido de la región</p></li><li><p>Calcule un descriptor local de la región normalizada</p></li><li><p>Alinear con descriptores locales</p></li></ul><p>Algunos algoritmos de correspondencias son:</p><ul><li><p>Brute-Force Matcher</p></li><li><p>FLANN(Fast Library for Approximate Nearest Neighbors) Matcher</p></li></ul><p style="text-align: center;" /><h2 style="text-align: center;" id="POC|Featuredetection,extractionandMatching-Resultados">Resultados</h2></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><strong>SIFT</strong></p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1505689607.png" data-image-src="attachments/1505361926/1505689607.png" data-height="480" data-width="1524" data-unresolved-comment-count="0" data-linked-resource-id="1505689607" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20211109-211749.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="d37f8aa0-1533-4a5a-a25e-f9cbcbfb17f0" data-media-type="file"></span></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><strong>ORB</strong></p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1505525769.png" data-image-src="attachments/1505361926/1505525769.png" data-height="800" data-width="919" data-unresolved-comment-count="0" data-linked-resource-id="1505525769" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20211109-211903.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="2141c0e6-b623-4484-a04c-fbb1f910b808" data-media-type="file"></span></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><strong>KORNIA</strong></p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1505525775.png" data-image-src="attachments/1505361926/1505525775.png" data-height="850" data-width="703" data-unresolved-comment-count="0" data-linked-resource-id="1505525775" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20211109-211925.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="e273fe07-a021-4163-937f-678a9f44851f" data-media-type="file"></span></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p /></div>
+</div>
+</div>
+<div class="columnLayout fixed-width" data-layout="fixed-width">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p /><p /><h1 style="text-align: center;" id="POC|Featuredetection,extractionandMatching-Approachparamatchingconmultipleinstanciasenunaimagen">Approach para matching con multiple instancias en una imagen</h1><p>El problema con el enfoque de alinear correspondencias entre un par de imagenes de la misma escena es que solo pudo detectar una instancia de la plantilla en la imagen de entrada; ¡no podría realizar la detección de múltiples objetos!</p><p>Existen varios enfoques para lograr esto la alineación de multiples objetos en una imagen con un template:</p><ul><li><p>CNN</p></li><li><p>Viola and Jones detector</p></li><li><p>Haar cascade</p></li><li><p>Template matching</p></li><li><p>Clustering</p></li></ul><p>En el caso de alineación de multiples objetos con un template, usualmente el procedimiento es el siguiente:</p><ul><li><p>Aplicar el matchTemplate</p></li><li><p>Encuentar todas las coordenadas (x, y) donde la matriz de resultados coincidentes de la plantilla sea mayor que una puntuación de umbral preestablecida</p></li><li><p>Extrae todas estas regiones </p></li><li><p>Aplicarles supresión no máxima</p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="442" loading="lazy" src="attachments/1505361926/1505886233.png?width=442" data-image-src="attachments/1505361926/1505886233.png" data-height="687" data-width="700" data-unresolved-comment-count="0" data-linked-resource-id="1505886233" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20211110-115133.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="dc0dadd6-2e23-4acf-b3a1-b3b10403ef91" data-media-type="file"></span><p style="text-align: center;"><em>Tomado de multi-template matching. </em><a href="https://www.pyimagesearch.com/2021/03/29/multi-template-matching-with-opencv/" class="external-link" rel="nofollow">PyImageSearch</a><em> </em></p><p>Otro enfoque propuesto fué el uso de un algoritmo de <strong>Clustering</strong>. </p><p>El análisis de clusters o clustering es la tarea de agrupar un conjunto de objetos de tal manera que los objetos del mismo grupo (llamado clusters) sean más similares (en cierto sentido) entre sí que a los de otros grupos (clusters). Es una tarea principal del análisis de datos exploratorios y una técnica común para el análisis de datos estadísticos, que se utiliza en muchos campos, incluido el reconocimiento de patrones, el análisis de imágenes, la recuperación de información, la bioinformática, la compresión de datos, los gráficos por computadora y el aprendizaje automático.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="442" loading="lazy" src="attachments/1505361926/1504903194?width=442" data-image-src="attachments/1505361926/1504903194" data-height="360" data-width="708" data-unresolved-comment-count="0" data-linked-resource-id="1504903194" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="03a8c0fb-86ec-4fe1-bdf1-b334d18152dc#media-blob-url=true&amp;id=86dc035c-a6cf-494e-aa4c-8b43036f9275&amp;collection=&amp;contextId=12100&amp;mimeType=image%2Fpng&amp;name=S65Sk9c.png&amp;size=49512&amp;width=1017&amp;height=517" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="f367b3ae-da12-495e-85cb-26d1430ebd32" data-media-type="file"></span><p>Dado que la detección y extracción de caracteristicas en imagenes muestra en un patrón de agrupación (tal y como se muestra en la figura de abajo), es posible utilizar un algoritmo de clustering para la agrupación de caracteristicas cercanas en subgrupos, y de esta manera, implementar un procedimiento de alineación de caracteristicas entre multiples objetos.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="544" loading="lazy" src="attachments/1505361926/1505263623?width=544" data-image-src="attachments/1505361926/1505263623" data-height="693" data-width="1040" data-unresolved-comment-count="0" data-linked-resource-id="1505263623" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="04027c91-6a66-4b9b-9ab4-3ddee372d28c#media-blob-url=true&amp;id=6d3a8eb4-5cf3-426c-a4ea-32839c1b1000&amp;contextId=12100&amp;collection=" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="1c6c25c1-dde2-44c4-a583-4ad00991d5fe" data-media-type="file"></span><p>Para esta prueba de concepto, se ha propuesta el uso de algoritmos de clustering para el computo de matching entre grupos de features cercanos. Un ejemplo es como se muestra en la figura de abajo.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="680" loading="lazy" src="attachments/1505361926/1504870416?width=680" data-image-src="attachments/1505361926/1504870416" data-height="219" data-width="736" data-unresolved-comment-count="0" data-linked-resource-id="1504870416" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="cf811f0d-c541-4611-ba74-04b952c9e6e3#media-blob-url=true&amp;id=14b0edeb-fc28-4863-b53a-ef4921100f2a&amp;collection=&amp;contextId=12101&amp;mimeType=image%2Fpng&amp;name=rMNeV.png&amp;size=259481&amp;width=1474&amp;height=439" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="cfd41c92-d77d-4904-95e6-1214fd01c975" data-media-type="file"></span><p /><h2 style="text-align: center;" id="POC|Featuredetection,extractionandMatching-Resultados.1">Resultados</h2></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><strong>Clustering - MeanShift</strong></p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1505427461" data-image-src="attachments/1505361926/1505427461" data-height="616" data-width="708" data-unresolved-comment-count="0" data-linked-resource-id="1505427461" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="2e1d7de1-03ce-4532-bf75-330bb8ab7c2e#media-blob-url=true&amp;id=fe30e4ab-79b8-4ac5-9cff-3911a79d6353&amp;collection=&amp;contextId=12101&amp;mimeType=image%2Fpng&amp;name=po.png&amp;size=600616&amp;width=919&amp;height=800" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="d6485575-62ac-47c2-9371-705ed2ea3ce4" data-media-type="file"></span></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><strong>Clustering - KMeans</strong></p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1504903186.png" data-image-src="attachments/1505361926/1504903186.png" data-height="693" data-width="1040" data-unresolved-comment-count="0" data-linked-resource-id="1504903186" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20211109-210719.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="005ea1e7-def5-491b-bc8a-070cfb35bb9c" data-media-type="file"></span></div>
+</div>
+</div>
+<div class="columnLayout fixed-width" data-layout="fixed-width">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p>Este enfoque tiene ventajas y desventajas en determinadas situaciones. </p><ul><li><p>Si se tiene 2 imagenes de la misma escena (por ejemplo 2 afiches similares), entonces los resultados de clásificación son óptimos, pues los puntos de interés globales de cada imagen son semejantes.</p></li><li><p>Si se tiene 2 imagenes con variaciones en la escena (por ejemplo varios afiches en una imagen), se empiezan a observar agrupaciones debido al numero de clusters. </p></li><li><p>Un problema que se presenta es que el enfoque de clusters no puede ser aplicado a 2 imagenes de la misma escena.</p></li></ul></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1506181133.png" data-image-src="attachments/1505361926/1506181133.png" data-height="737" data-width="939" data-unresolved-comment-count="0" data-linked-resource-id="1506181133" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20211112-161618.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="8af8d34d-da44-4e24-8d00-1765566c8363" data-media-type="file"></span></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1507065857.png" data-image-src="attachments/1505361926/1507065857.png" data-height="699" data-width="973" data-unresolved-comment-count="0" data-linked-resource-id="1507065857" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20211112-161757.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="21ebdd54-19ac-4175-b505-23d7797efa51" data-media-type="file"></span></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1507098625.png" data-image-src="attachments/1505361926/1507098625.png" data-height="578" data-width="975" data-unresolved-comment-count="0" data-linked-resource-id="1507098625" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20211112-161807.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="e0bd4b73-f202-4cf4-9739-5a9261ba6d7e" data-media-type="file"></span></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1507164161.png" data-image-src="attachments/1505361926/1507164161.png" data-height="737" data-width="939" data-unresolved-comment-count="0" data-linked-resource-id="1507164161" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20211112-161846.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="9bf0e2ee-f173-487d-b83d-0ffb41962b58" data-media-type="file"></span><p /></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1506181141.png" data-image-src="attachments/1505361926/1506181141.png" data-height="578" data-width="974" data-unresolved-comment-count="0" data-linked-resource-id="1506181141" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20211112-161903.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="1065f36d-39f0-4343-817f-28362fdfcbf4" data-media-type="file"></span><p /></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1507131395.png" data-image-src="attachments/1505361926/1507131395.png" data-height="584" data-width="985" data-unresolved-comment-count="0" data-linked-resource-id="1507131395" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20211112-161912.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="2608fc08-fa94-4799-9c0c-063a27b07497" data-media-type="file"></span><p /></div>
+</div>
+</div>
+<div class="columnLayout fixed-width" data-layout="fixed-width">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1506181147.png" data-image-src="attachments/1505361926/1506181147.png" data-height="699" data-width="973" data-unresolved-comment-count="0" data-linked-resource-id="1506181147" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20211112-161923.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="dc5743e8-b167-4936-85ea-691c4604af82" data-media-type="file"></span><p style="text-align: center;" /><h2 style="text-align: center;" id="POC|Featuredetection,extractionandMatching-Conclusion">Conclusion</h2><p>Se recomienda el uso de un detector de rectangulos o recuadros, para la clasificacion de multiples afiches en una imagen. El metodo de clustering sería una alternativa siempre que se limite el conjunto de imagenes a multiples afiches. Si se tienen imagenes con 1 solo afiches, el algoritmo de clustering no es adecuado pues sub-divide el conjunto de caracteristicas de interes globales de la imagen. </p><p /><h2 style="text-align: center;" id="POC|Featuredetection,extractionandMatching-Houghlinetransform">Hough line transform</h2><p>Con base en los resultados obtenidos con la propuesta de clustering, se ha decido probar un enfoque basado en detección de lineas utilizando <a href="https://opencv24-python-tutorials.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_houghlines/py_houghlines.html" class="external-link" rel="nofollow">Hough transform</a>, <a href="https://docs.opencv.org/4.x/dd/d49/tutorial_py_contour_features.html" class="external-link" rel="nofollow">contornos</a> y filtros dado que los afiches o posters son en geometría rectangulares.</p><p /></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1506967555.png" data-image-src="attachments/1505361926/1506967555.png" data-height="583" data-width="600" data-unresolved-comment-count="0" data-linked-resource-id="1506967555" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20211112-162355.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="0665f951-8951-4d49-8b05-8cda684e13d5" data-media-type="file"></span></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1507033091.png" data-image-src="attachments/1505361926/1507033091.png" data-height="148" data-width="607" data-unresolved-comment-count="0" data-linked-resource-id="1507033091" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20211112-162445.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="6af3720e-3ce3-4276-ac46-b630adc960d1" data-media-type="file"></span></div>
+</div>
+</div>
+<div class="columnLayout fixed-width" data-layout="fixed-width">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p /><h2 style="text-align: center;" id="POC|Featuredetection,extractionandMatching-Resultados.2">Resultados</h2><p>Se determinó que generalizar un algoritmo para detectar la ubicación de los posters en cada imagen utilizando Hough o contornos no es óptimo para este caso, pues la escena varía entre imagen e imagen lo que dificulta el proceso de parametrización de cada algoritmo.</p></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1507721217.png" data-image-src="attachments/1505361926/1507721217.png" data-height="514" data-width="529" data-unresolved-comment-count="0" data-linked-resource-id="1507721217" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20211116-132836.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="fede75cc-2cbc-4e0f-8b8c-500899c35cec" data-media-type="file"></span></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1507819521.png" data-image-src="attachments/1505361926/1507819521.png" data-height="514" data-width="529" data-unresolved-comment-count="0" data-linked-resource-id="1507819521" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20211116-132906.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="ec0b6678-1d1a-46db-907a-a4bf22ab1330" data-media-type="file"></span><p /></div>
+</div>
+</div>
+<div class="columnLayout fixed-width" data-layout="fixed-width">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p /><p /><h2 style="text-align: center;" id="POC|Featuredetection,extractionandMatching-ContoursResultados">Contours Resultados</h2><p>Aquí se presentan los resultados obtenidos utilizando contornos para la detección de posters. La idea fué calcular el contorno de mayor area dado un radio de area que es la relación entre el tamaño de la imagen y el tamaño del contorno. Los resultados fueron óptimos para la detección de afiches en algunos casos, pero no es un enfoque que se recomiende para producción pues es dificil generalizar el funcionamiento del algoritmo para cualquier escenario.</p><p>En su lugar, se recomienda proceder con un enfoque de Deep learning para la creación de un modelo de formas rectangulares utilizando segmentación semantica.</p></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1511194625.png" data-image-src="attachments/1505361926/1511194625.png" data-height="1056" data-width="1846" data-unresolved-comment-count="0" data-linked-resource-id="1511194625" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image_1.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="f347c360-1ecd-4cf1-a759-923c0ba8f5a5" data-media-type="file"></span></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1511227393.png" data-image-src="attachments/1505361926/1511227393.png" data-height="543" data-width="1719" data-unresolved-comment-count="0" data-linked-resource-id="1511227393" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image_2.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="099d59e9-caa4-42b4-b63e-fdb1b9e0a1d2" data-media-type="file"></span></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1511063555.png" data-image-src="attachments/1505361926/1511063555.png" data-height="860" data-width="1797" data-unresolved-comment-count="0" data-linked-resource-id="1511063555" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image_3.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="797f77b9-eecf-45ce-a0d1-a385e6fa584f" data-media-type="file"></span></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1510801418.png" data-image-src="attachments/1505361926/1510801418.png" data-height="1017" data-width="1814" data-unresolved-comment-count="0" data-linked-resource-id="1510801418" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image_4.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="3cfa66fa-74b2-4211-81af-10eb91d64afe" data-media-type="file"></span></div>
+</div>
+</div>
+<div class="columnLayout fixed-width" data-layout="fixed-width">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/1505361926/1510932483.png" data-image-src="attachments/1505361926/1510932483.png" data-height="1055" data-width="1846" data-unresolved-comment-count="0" data-linked-resource-id="1510932483" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Screenshot from 2021-11-24 14-03-15.png" data-base-url="https://aituring.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1505361926" data-linked-resource-container-version="6" data-media-id="1995fe56-834e-4966-97a0-05876801b333" data-media-type="file"></span><p /><h2 style="text-align: center;" id="POC|Featuredetection,extractionandMatching-Referencias">Referencias</h2><p><a href="https://stackoverflow.com/questions/56414282/detecting-lines-of-a-rectangle-image-using-hough-transform" data-card-appearance="inline" class="external-link" rel="nofollow">https://stackoverflow.com/questions/56414282/detecting-lines-of-a-rectangle-image-using-hough-transform</a> </p><p><a href="https://docs.opencv.org/4.x/df/d9d/tutorial_py_colorspaces.html" data-card-appearance="inline" class="external-link" rel="nofollow">https://docs.opencv.org/4.x/df/d9d/tutorial_py_colorspaces.html</a> </p><p><a href="https://stackoverflow.com/questions/10533233/opencv-c-obj-c-advanced-square-detection/10535006#10535006" data-card-appearance="inline" class="external-link" rel="nofollow">https://stackoverflow.com/questions/10533233/opencv-c-obj-c-advanced-square-detection/10535006#10535006</a> </p><p><a href="https://stackoverflow.com/questions/37486245/poster-detection-in-opencv" data-card-appearance="inline" class="external-link" rel="nofollow">https://stackoverflow.com/questions/37486245/poster-detection-in-opencv</a> </p><p><a href="https://github.com/OmkarKirpan/Shape-detection/tree/master/shape-detection/shape-detection" data-card-appearance="inline" class="external-link" rel="nofollow">https://github.com/OmkarKirpan/Shape-detection/tree/master/shape-detection/shape-detection</a> </p><p><a href="https://gist.github.com/pknowledge/1ac15006bb1d86350fc8e5c47d324f64" data-card-appearance="inline" class="external-link" rel="nofollow">https://gist.github.com/pknowledge/1ac15006bb1d86350fc8e5c47d324f64</a> </p><p><a href="https://github.com/sahirnoorali/shape-detection-opencv/blob/master/shape_detection.py" data-card-appearance="inline" class="external-link" rel="nofollow">https://github.com/sahirnoorali/shape-detection-opencv/blob/master/shape_detection.py</a> </p><p /></div>
+</div>
+</div>
+</div>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1505525763.png">image-20211109-210550.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1505427461">2e1d7de1-03ce-4532-bf75-330bb8ab7c2e#media-blob-url=true&amp;id=fe30e4ab-79b8-4ac5-9cff-3911a79d6353&amp;collection=&amp;contextId=12101&amp;mimeType=image%2Fpng&amp;name=po.png&amp;size=600616&amp;width=919&amp;height=800</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1504870416">cf811f0d-c541-4611-ba74-04b952c9e6e3#media-blob-url=true&amp;id=14b0edeb-fc28-4863-b53a-ef4921100f2a&amp;collection=&amp;contextId=12101&amp;mimeType=image%2Fpng&amp;name=rMNeV.png&amp;size=259481&amp;width=1474&amp;height=439</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1504837669">b882b736-d450-4361-8cb4-4e14f5c58675#media-blob-url=true&amp;id=0bafa12f-a155-4060-b30b-6d3b095365f5&amp;collection=&amp;contextId=12064&amp;mimeType=image%2Fpng&amp;name=index.png&amp;size=1205315&amp;width=1000&amp;height=666</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1504903186.png">image-20211109-210719.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1504903194">03a8c0fb-86ec-4fe1-bdf1-b334d18152dc#media-blob-url=true&amp;id=86dc035c-a6cf-494e-aa4c-8b43036f9275&amp;collection=&amp;contextId=12100&amp;mimeType=image%2Fpng&amp;name=S65Sk9c.png&amp;size=49512&amp;width=1017&amp;height=517</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1505263623">04027c91-6a66-4b9b-9ab4-3ddee372d28c#media-blob-url=true&amp;id=6d3a8eb4-5cf3-426c-a4ea-32839c1b1000&amp;contextId=12100&amp;collection=</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1505689607.png">image-20211109-211749.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1505525769.png">image-20211109-211903.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1505525775.png">image-20211109-211925.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1505984515.png">image-20211110-112800.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1505951748.png">image-20211110-113511.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1505886233.png">image-20211110-115133.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1506181133.png">image-20211112-161618.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1507065857.png">image-20211112-161757.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1507098625.png">image-20211112-161807.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1507164161.png">image-20211112-161846.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1506181141.png">image-20211112-161903.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1507131395.png">image-20211112-161912.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1506181147.png">image-20211112-161923.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1506967555.png">image-20211112-162355.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1506967561.png">image-20211112-162441.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1507033091.png">image-20211112-162445.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1507131401.jpg">TRuTK.jpg</a> (image/jpeg)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1507098633.png">image-20211112-163329.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1507721217.png">image-20211116-132836.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1507819521.png">image-20211116-132906.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1510572033.png">Screenshot from 2021-11-16 15-51-51.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1511194625.png">image_1.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1511227393.png">image_2.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1511063555.png">image_3.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1510801418.png">image_4.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1505361926/1510932483.png">Screenshot from 2021-11-24 14-03-15.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 06, 2021 20:41</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>
