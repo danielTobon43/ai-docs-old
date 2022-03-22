@@ -1,3 +1,3 @@
 # documentation
-Go to https://danieltobon43.github.io/aituring-docs/
+Go to https://danieltobon43.github.io/ai-docs-old/
 
