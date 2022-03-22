@@ -1,6 +1,3 @@
-# AITuring documentation
-Documentation exported from confluence
-
-## Documentation
-Go to 
+# documentation
+Go to https://danieltobon43.github.io/aituring-docs/
 
