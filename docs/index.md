@@ -49,7 +49,13 @@
                         <li>
                 <a href="1432617107.html">Inteligencia Artificial - Documentación central</a>
 
-         <img src="images/icons/contenttypes/home_page_16.png" height="16" width="16" border="0" align="absmiddle"/>                     <ul>
+         <img src="images/icons/contenttypes/home_page_16.png" height="16" width="16" border="0" align="absmiddle"/>  
+         <ul>
+                                    <li>
+                                        <a href="documentacion-pdf.html">Documentacion en pdf</a>
+                                    </li>
+                                </ul> 
+                                                   <ul>
                     <li>
                 <a href="Estado-actual-flujo-de-modelos-2021-08_1431306241.html">Estado actual flujo de modelos 2021-08</a>
 
